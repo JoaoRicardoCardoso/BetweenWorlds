@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 326, 10 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.274286, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.194286, 0.194286, 0.194286, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 546, 324 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 0.499975, 0 )
+scale = Vector2( 0.315766, 16.3167 )
+texture = SubResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -28 )
+jumping_speed = 300
