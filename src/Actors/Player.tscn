@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Sem_Titulo.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.23042, 8.1255 )
+
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 6
 script = ExtResource( 1 )
 jumping_speed = 200
 
@@ -16,3 +20,23 @@ shape = SubResource( 1 )
 position = Vector2( -1.90735e-06, -7.62939e-06 )
 scale = Vector2( 0.0423488, 0.04689 )
 texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 10.2696, 0 )
+shape = SubResource( 2 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( -10.2696, 0 )
+shape = SubResource( 2 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_right_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_right_Area2D_body_exited"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_left_Area2D2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_left_Area2D2_body_exited"]
