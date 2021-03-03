@@ -45,8 +45,10 @@ change_world={
 [layer_names]
 
 2d_physics/layer_1="Player"
-2d_physics/layer_2="Dimension1"
-2d_physics/layer_3="Dimension2"
+2d_physics/layer_2="Dimension 1"
+2d_physics/layer_3="Dimension 2"
+2d_physics/layer_4="Platforms Dimension 1"
+2d_physics/layer_5="Platforms Dimension 2"
 
 [rendering]
 

@@ -12,8 +12,8 @@
 visible = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 512.588, 454.923 )
-scale = Vector2( 2, 2 )
-jumping_speed = 400
+position = Vector2( 71.7147, 321.273 )
+scale = Vector2( 5, 5 )
+jumping_speed = 500
 wall_jump_velocity_y = 250
 wall_jump_velocity_x = 400

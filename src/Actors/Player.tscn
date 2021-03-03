@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/Sem_Titulo.png" type="Texture" id=2]
+[ext_resource path="res://assets/Player/Player.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -9,7 +9,7 @@
 extents = Vector2( 3, 8 )
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 2
+collision_mask = 10
 script = ExtResource( 1 )
 jumping_speed = 200
 

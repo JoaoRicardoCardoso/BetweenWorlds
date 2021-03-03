@@ -138,5 +138,5 @@ func _ready():
 #Changing colision mask
 func _input(event):
 	if event.is_action_pressed("change_world"):
-		set_collision_mask_bit(1, not get_collision_mask_bit(1))
-		set_collision_mask_bit(2, not get_collision_mask_bit(2))
+		for n in range(1,5):
+			set_collision_mask_bit(n, not get_collision_mask_bit(n))
