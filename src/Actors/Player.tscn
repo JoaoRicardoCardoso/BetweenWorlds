@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Player/Player.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 64 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 3, 8 )
+extents = Vector2( 16, 56 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 56, 56 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 10
@@ -17,8 +21,8 @@ jumping_speed = 200
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D"]
-position = Vector2( -1.90735e-06, -7.62939e-06 )
-scale = Vector2( 0.0423488, 0.04689 )
+position = Vector2( 1.90735e-06, 0 )
+scale = Vector2( 0.263918, 0.294931 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -26,7 +30,7 @@ collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -10, 0 )
+position = Vector2( -64, 0 )
 shape = SubResource( 2 )
 
 [node name="Area2D2" type="Area2D" parent="."]
@@ -34,8 +38,15 @@ collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2( 10, 0 )
+position = Vector2( 64, 0 )
 shape = SubResource( 2 )
+
+[node name="Area2D3" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -44,3 +55,4 @@ offset_v = -1.0
 [connection signal="body_exited" from="Area2D" to="." method="_on_right_Area2D_body_exited"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_left_Area2D2_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="." method="_on_left_Area2D2_body_exited"]
+[connection signal="body_entered" from="Area2D3" to="." method="_on_Area2D3_body_entered"]

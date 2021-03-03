@@ -134,9 +134,16 @@ func _ready():
 #func _process(delta):
 #	pass
 
-####################################
+#########################################################
 #Changing colision mask
 func _input(event):
 	if event.is_action_pressed("change_world"):
 		for n in range(1,5):
 			set_collision_mask_bit(n, not get_collision_mask_bit(n))
+		$Area2D3.set_collision_mask_bit(1, get_collision_mask_bit(1))
+		$Area2D3.set_collision_mask_bit(2, get_collision_mask_bit(2))
+			
+#########################################################
+func _on_Area2D3_body_entered(body):
+	print("DEAD") #create animation
+	queue_free()
