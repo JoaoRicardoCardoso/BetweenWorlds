@@ -1,5 +1,6 @@
 extends Node2D
 
-func _input(event):
-	if event.is_action_pressed("change_world"):
-		visible = not visible
+func _on_Player_renamed():
+	visible = not visible
+	print("1")
+	print(visible)

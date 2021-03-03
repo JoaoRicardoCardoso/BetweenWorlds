@@ -27,6 +27,12 @@ var wall_collisions_left = 0
 var wall_collisions_right = 0
 var wall_jump_flag = false
 
+var changed_world = false
+var energy = 100
+var change_world_cooldown:float = 1.0
+var change_world_counter:float = change_world_cooldown
+
+
 ####################################################
 #Dash functions
 func calculate_dash_velocity(input_direction, delta):
@@ -131,19 +137,48 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if (changed_world):
+		change_world_counter += delta*5
+		change_world_counter = min(change_world_counter, change_world_cooldown)
+		energy -= delta*50
+		energy = max(energy,0)
+	else:
+		change_world_counter += delta*5
+		change_world_counter = min(change_world_counter, change_world_cooldown)
+		if (change_world_counter == change_world_cooldown):
+			energy += delta*25
+			energy = min(energy,100)
+	get_node("GUI/MarginContainer/VBoxContainer/PowerBar/Gauge").set_value(energy)
+	if (energy == 0):
+		_change_world(false)
 
 #########################################################
-#Changing colision mask
+#Changing colision mask if appropriate
 func _input(event):
 	if event.is_action_pressed("change_world"):
+		if (not changed_world and not energy == 0) or changed_world:
+			if change_world_counter == change_world_cooldown:
+				_change_world(not changed_world)
+
+func _change_world(flag: bool):
+	if flag != changed_world:
+		if changed_world:
+			self.set_name("True")
+		else:
+			self.set_name("False")
+		changed_world = flag
+		change_world_counter = 0
 		for n in range(1,5):
 			set_collision_mask_bit(n, not get_collision_mask_bit(n))
 		$Area2D3.set_collision_mask_bit(1, get_collision_mask_bit(1))
 		$Area2D3.set_collision_mask_bit(2, get_collision_mask_bit(2))
-			
+	
 #########################################################
 func _on_Area2D3_body_entered(body):
 	print("DEAD") #create animation
-	queue_free()
+	running_speed = 0
+	jumping_speed = 0
+	if $CollisionShape2D/Sprite != null:
+		$CollisionShape2D/Sprite.queue_free()
+	

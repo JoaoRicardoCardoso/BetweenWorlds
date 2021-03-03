@@ -12,8 +12,9 @@
 visible = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 78.8787, 321.937 )
-scale = Vector2( 0.5, 0.9 )
+position = Vector2( 513.286, 298.769 )
 jumping_speed = 500
 wall_jump_velocity_y = 250
 wall_jump_velocity_x = 400
+[connection signal="renamed" from="Player" to="Dimension1" method="_on_Player_renamed"]
+[connection signal="renamed" from="Player" to="Dimension2" method="_on_Player_renamed"]
