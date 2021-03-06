@@ -1,4 +1,8 @@
 extends Actor
+class_name Player
+
+#Instanceable Objects
+var Bullet = load("res://Projectiles/PlayerBullet.tscn")
 
 #Base variables
 export var running_speed = 10000
@@ -101,6 +105,9 @@ func calculate_velocity(velocity, delta):
 	input_direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	
+	if input_direction.x != 0:
+		orientation.x = input_direction.x
+	
 	if abs(velocity.x) <= running_speed:
 		out.x = delta * running_speed * input_direction.x
 		
@@ -120,10 +127,17 @@ func calculate_velocity(velocity, delta):
 	
 	return out
 
-func _physics_process(delta):
-	var new_velocity = calculate_velocity(current_velocity, delta)
-	
-	current_velocity = move_and_slide(new_velocity, Vector2.UP) 
+###########################################################
+
+func shoot():
+	var b_instance = Bullet.instance()
+	b_instance.init(orientation)
+	owner.add_child(b_instance)
+	b_instance.position = position
+
+func _process(delta):
+	if Input.is_action_just_pressed("ui_shoot"):
+		shoot()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
