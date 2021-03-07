@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Actors/Player.gd"
+}, {
+"base": "Enemy",
+"class": "RangedEnemy",
+"language": "GDScript",
+"path": "res://Actors/RangedEnemy.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
 "Enemy": "",
-"Player": ""
+"Player": "",
+"RangedEnemy": ""
 }
 
 [application]

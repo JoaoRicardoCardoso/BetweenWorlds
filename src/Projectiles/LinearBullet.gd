@@ -11,8 +11,10 @@ var timeout_counter = timeout
 # var a = 2
 # var b = "text"
 
-func init(direction):
+func init(direction, targeted, ignored):
 	current_velocity = direction * travel_speed
+	set_collision_mask_bit(targeted, true)
+	set_collision_mask_bit(ignored, false)
 	
 func disperse():
 	queue_free()
@@ -36,9 +38,8 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
-func _on_PlayerBullet_body_entered(body):
-	if (body is Actor) and not (body is Player):
+func _on_Bullet_body_entered(body):
+	if body is Actor:
 		body.damage(damage)
 		
 	queue_free()

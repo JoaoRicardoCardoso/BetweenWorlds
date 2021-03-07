@@ -2,7 +2,7 @@ extends Actor
 class_name Player
 
 #Instanceable Objects
-var Bullet = load("res://Projectiles/PlayerBullet.tscn")
+var Bullet = load("res://Projectiles/LinearBullet.tscn")
 
 #Base variables
 export var running_speed = 10000
@@ -131,7 +131,7 @@ func calculate_velocity(velocity, delta):
 
 func shoot():
 	var b_instance = Bullet.instance()
-	b_instance.init(orientation)
+	b_instance.init(orientation, 5, 0) #damage layer bit 5, ignore layer bit 0
 	owner.add_child(b_instance)
 	b_instance.position = position
 
