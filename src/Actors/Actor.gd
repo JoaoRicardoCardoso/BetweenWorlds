@@ -25,7 +25,11 @@ func damage(value):
 	if health <= 0:
 		die()
 
+func handle_drops():
+	pass
+
 func die():
+	handle_drops()
 	queue_free()
 
 # Called when the node enters the scene tree for the first time.

@@ -74,4 +74,3 @@ aggro_range = 375
 
 [node name="Pickable" parent="." instance=ExtResource( 4 )]
 position = Vector2( -154, -236 )
-scale = Vector2( 0.05, 0.05 )
