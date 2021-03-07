@@ -9,12 +9,13 @@
 [node name="Dimension1" parent="." instance=ExtResource( 1 )]
 
 [node name="Dimension2" parent="." instance=ExtResource( 2 )]
-visible = false
+modulate = Color( 1, 1, 1, 0.2 )
+light_mask = -2147483647
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 513.286, 298.769 )
 jumping_speed = 500
 wall_jump_velocity_y = 250
 wall_jump_velocity_x = 400
-[connection signal="renamed" from="Player" to="Dimension1" method="_on_Player_renamed"]
 [connection signal="renamed" from="Player" to="Dimension2" method="_on_Player_renamed"]
+[connection signal="renamed" from="Player" to="Dimension1" method="_on_Player_renamed"]

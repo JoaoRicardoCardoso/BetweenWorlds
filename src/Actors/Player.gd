@@ -168,10 +168,8 @@ func _input(event):
 
 func _change_world(flag: bool):
 	if flag != changed_world:
-		if changed_world:
-			self.set_name("True")
-		else:
-			self.set_name("False")
+		get_parent().get_node_or_null("Dimension1").change_state()
+		get_parent().get_node_or_null("Dimension2").change_state()
 		changed_world = flag
 		change_world_counter = 0
 		for n in range(1,5):
@@ -180,7 +178,11 @@ func _change_world(flag: bool):
 		$Area2D3.set_collision_mask_bit(2, get_collision_mask_bit(2))
 		$Area2D3.set_collision_mask_bit(5, get_collision_mask_bit(1))
 		$Area2D3.set_collision_mask_bit(6, get_collision_mask_bit(2))
-	
+		$Area2D.set_collision_mask_bit(1, get_collision_mask_bit(1))
+		$Area2D.set_collision_mask_bit(2, get_collision_mask_bit(2))
+		$Area2D2.set_collision_mask_bit(1, get_collision_mask_bit(1))
+		$Area2D2.set_collision_mask_bit(2, get_collision_mask_bit(2))
+
 #########################################################
 func _on_Area2D3_body_entered(body):
 	if body.name == "PowerUp":
