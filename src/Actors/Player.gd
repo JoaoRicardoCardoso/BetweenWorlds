@@ -31,6 +31,7 @@ var changed_world = false
 var energy = 100
 var change_world_cooldown:float = 1.0
 var change_world_counter:float = change_world_cooldown
+var powerup_counter:float = 0
 
 
 ####################################################
@@ -138,6 +139,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	powerup_counter -= delta*50
+	powerup_counter = max(powerup_counter,0)
 	if (changed_world):
 		change_world_counter += delta*5
 		change_world_counter = min(change_world_counter, change_world_cooldown)
@@ -149,6 +152,8 @@ func _process(delta):
 		if (change_world_counter == change_world_cooldown):
 			energy += delta*25
 			energy = min(energy,100)
+	if powerup_counter > 0:
+		energy = 100
 	get_node("GUI/MarginContainer/VBoxContainer/PowerBar/Gauge").set_value(energy)
 	if (energy == 0):
 		_change_world(false)
@@ -173,12 +178,18 @@ func _change_world(flag: bool):
 			set_collision_mask_bit(n, not get_collision_mask_bit(n))
 		$Area2D3.set_collision_mask_bit(1, get_collision_mask_bit(1))
 		$Area2D3.set_collision_mask_bit(2, get_collision_mask_bit(2))
+		$Area2D3.set_collision_mask_bit(5, get_collision_mask_bit(1))
+		$Area2D3.set_collision_mask_bit(6, get_collision_mask_bit(2))
 	
 #########################################################
 func _on_Area2D3_body_entered(body):
-	print("DEAD") #create animation
-	running_speed = 0
-	jumping_speed = 0
-	if $CollisionShape2D/Sprite != null:
-		$CollisionShape2D/Sprite.queue_free()
+	if body.name == "PowerUp":
+		powerup_counter = 200
+		body.queue_free()
+	else: 
+		print("DEAD") #create animation
+		running_speed = 0
+		jumping_speed = 0
+		if $CollisionShape2D/Sprite != null:
+			$CollisionShape2D/Sprite.queue_free()
 	

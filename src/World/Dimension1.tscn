@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/Tiles/2.png" type="Texture" id=1]
 [ext_resource path="res://World/Platforms/Platform1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World/Dimension1.gd" type="Script" id=3]
 [ext_resource path="res://assets/Tiles/5.png" type="Texture" id=4]
 [ext_resource path="res://assets/Tiles/BG.png" type="Texture" id=5]
+[ext_resource path="res://World/PowerUps/PowerUp1.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
@@ -106,3 +107,6 @@ position = Vector2( 3500, 250 )
 
 [node name="Platform4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 4500, 250 )
+
+[node name="PowerUp" parent="." instance=ExtResource( 6 )]
+position = Vector2( 819.099, 311.131 )
