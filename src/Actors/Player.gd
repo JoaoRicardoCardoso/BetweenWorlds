@@ -160,6 +160,7 @@ func shoot():
 func _ready():
 	GUI = get_parent().get_node_or_null("GUI")
 	health = 100
+	max_health = 100
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -220,7 +221,6 @@ func _change_world(flag: bool):
 #########################################################
 func getCoffee():
 	powerup_counter = 200
-	
 
 func damage(value):
 	health -= value

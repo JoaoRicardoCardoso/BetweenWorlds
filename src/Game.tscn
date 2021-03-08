@@ -27,9 +27,9 @@ wall_jump_velocity_x = 400
 [node name="GUI" parent="." instance=ExtResource( 6 )]
 
 [node name="Pitfall" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1792, 520 )
+position = Vector2( 1536, 520 )
 scale = Vector2( 16, 1 )
 collision_layer = 524800
-damage = 1.0
+damage = 100000.0
 [connection signal="renamed" from="Player" to="Dimension2" method="_on_Player_renamed"]
 [connection signal="renamed" from="Player" to="Dimension1" method="_on_Player_renamed"]

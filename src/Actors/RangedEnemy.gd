@@ -9,6 +9,8 @@ export var aggro_range = 1000
 
 var shot_counter = 0
 
+var fixed_position = Vector2(0,0)
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -18,7 +20,7 @@ func calculate_velocity(velocity, delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	fixed_position = position
 
 func shoot(direction):
 	var b_instance = Bullet.instance()
@@ -39,6 +41,9 @@ func _process(delta):
 				shoot(player_direction)
 				shot_counter = shot_cooldown
 
+func _physics_process(delta):
+	if position != fixed_position:
+		position = fixed_position
 
 func _on_Area2D_area_entered(area):
 	pass
