@@ -1,18 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://World/Dimension1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Dimension2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://World/Hazards/Serial Port Hazard.tscn" type="PackedScene" id=7]
-[ext_resource path="res://World/Hazards/Pitfall.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
 
 [node name="Dimension1" parent="." instance=ExtResource( 1 )]
-
-[node name="Serial Port Hazard" parent="Dimension1" instance=ExtResource( 7 )]
-position = Vector2( 232, 232 )
 
 [node name="Dimension2" parent="." instance=ExtResource( 2 )]
 modulate = Color( 1, 1, 1, 0.2 )
@@ -25,11 +20,5 @@ wall_jump_velocity_y = 250
 wall_jump_velocity_x = 400
 
 [node name="GUI" parent="." instance=ExtResource( 6 )]
-
-[node name="Pitfall" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1536, 520 )
-scale = Vector2( 16, 1 )
-collision_layer = 524800
-damage = 100000.0
-[connection signal="renamed" from="Player" to="Dimension2" method="_on_Player_renamed"]
 [connection signal="renamed" from="Player" to="Dimension1" method="_on_Player_renamed"]
+[connection signal="renamed" from="Player" to="Dimension2" method="_on_Player_renamed"]
