@@ -180,6 +180,7 @@ func _process(delta):
 		energy = 100
 	
 	GUI.setPowerGauge(energy)
+	
 	if (energy == 0):
 		_change_world(false)
 
@@ -210,19 +211,21 @@ func _change_world(flag: bool):
 			set_collision_mask_bit(n, not get_collision_mask_bit(n))
 		$MiddleArea2D.set_collision_mask_bit(1, get_collision_mask_bit(1))
 		$MiddleArea2D.set_collision_mask_bit(2, get_collision_mask_bit(2))
-		$MiddleArea2D.set_collision_mask_bit(5, get_collision_mask_bit(1))
-		$MiddleArea2D.set_collision_mask_bit(6, get_collision_mask_bit(2))
-	
-		print(collision_layer)
+		$RightArea2D.set_collision_mask_bit(1, get_collision_mask_bit(1))
+		$RightArea2D.set_collision_mask_bit(2, get_collision_mask_bit(2))
+		$LeftArea2D.set_collision_mask_bit(1, get_collision_mask_bit(1))
+		$LeftArea2D.set_collision_mask_bit(2, get_collision_mask_bit(2))
+
 #########################################################
-func _on_middle_Area2D_body_entered(body):
-	if body.name == "PowerUp":
-		powerup_counter = 200
-		body.queue_free()
-	else: 
-		print("DEAD") #create animation
-		running_speed = 0
-		jumping_speed = 0
-		if $CollisionShape2D/Sprite != null:
-			$CollisionShape2D/Sprite.queue_free()
-	
+func getCoffee():
+	powerup_counter = 200
+
+func damage(value):
+	health -= value
+	get_parent().get_node_or_null("GUI").setHealthGauge(health)
+	if health <= 0:
+		die()
+
+func _on_MiddleArea2D_body_entered(body):
+	if (body.name) == "TileMap":
+		die()

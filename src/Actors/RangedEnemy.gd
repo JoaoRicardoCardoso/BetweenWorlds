@@ -30,7 +30,7 @@ func shoot(direction):
 func _process(delta):
 	shot_counter -= delta
 	if shot_counter <= 0:
-		var player = get_parent().get_node_or_null("Player")
+		var player = get_parent().get_parent().get_node_or_null("Player")
 		if player != null:
 			var player_direction = player.position - position
 			if player_direction.length() < aggro_range:

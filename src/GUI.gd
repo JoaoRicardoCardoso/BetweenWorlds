@@ -23,6 +23,9 @@ func update_position(new_position):
 	
 func setPowerGauge(value):
 	get_node("MarginContainer/VBoxContainer/PowerBar/Gauge").set_value(value)
+	
+func setHealthGauge(value):
+	get_node("MarginContainer/VBoxContainer/HealthBar/Gauge").set_value(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

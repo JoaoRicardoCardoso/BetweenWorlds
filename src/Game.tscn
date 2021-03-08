@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://World/Dimension1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Dimension2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Actors/Enemy.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Actors/RangedEnemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Node2D"]
@@ -21,30 +19,4 @@ jumping_speed = 500
 wall_jump_velocity_y = 250
 wall_jump_velocity_x = 400
 
-[node name="Enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 3016, 0 )
-
-[node name="Enemy2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2016, 72 )
-
-[node name="Enemy3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 4048, -8 )
-
-[node name="Enemy4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 5056, 0 )
-
-[node name="RangedEnemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 2496, 16 )
-
-[node name="RangedEnemy2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3504, 16 )
-
-[node name="RangedEnemy3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 4536, -8 )
-
-[node name="RangedEnemy4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1040, -56 )
-
 [node name="GUI" parent="." instance=ExtResource( 6 )]
-[connection signal="renamed" from="Player" to="Dimension2" method="_on_Player_renamed"]
-[connection signal="renamed" from="Player" to="Dimension1" method="_on_Player_renamed"]

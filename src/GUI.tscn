@@ -107,7 +107,8 @@ __meta__ = {
 margin_left = 133.0
 margin_right = 529.0
 margin_bottom = 53.0
-value = 100.0
+max_value = 5.0
+value = 5.0
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 6 )
 script = SubResource( 2 )
@@ -141,3 +142,4 @@ texture_progress = ExtResource( 7 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HealthBar/Gauge" to="." method="_on_Gauge_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/PowerBar/Gauge" to="." method="_on_Gauge_value_changed"]
