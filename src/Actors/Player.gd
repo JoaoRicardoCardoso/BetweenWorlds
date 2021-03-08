@@ -219,6 +219,7 @@ func _change_world(flag: bool):
 #########################################################
 func getCoffee():
 	powerup_counter = 200
+	
 
 func damage(value):
 	health -= value
@@ -228,4 +229,4 @@ func damage(value):
 
 func _on_MiddleArea2D_body_entered(body):
 	if (body.name) == "TileMap":
-		die()
+		damage(max_health)
