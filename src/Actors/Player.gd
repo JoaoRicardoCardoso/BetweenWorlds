@@ -1,4 +1,11 @@
 extends Actor
+class_name Player
+
+#GUI Controller
+var GUI = null
+
+#Instanceable Objects
+var Bullet = load("res://Projectiles/LinearBullet.tscn")
 
 #Base variables
 export var running_speed = 10000
@@ -69,13 +76,13 @@ func calculate_stomp(velocity, input_direction):
 func _on_right_Area2D_body_entered(body):
 	wall_collisions_right += 1
 
-func _on_left_Area2D2_body_entered(body):
+func _on_left_Area2D_body_entered(body):
 	wall_collisions_left += 1
 
 func _on_right_Area2D_body_exited(body):
 	wall_collisions_right -= 1
 
-func _on_left_Area2D2_body_exited(body):
+func _on_left_Area2D_body_exited(body):
 	wall_collisions_left -= 1
 
 func calculate_wall_interaction(velocity, input_direction, delta):
@@ -108,6 +115,9 @@ func calculate_velocity(velocity, delta):
 	input_direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	
+	if input_direction.x != 0:
+		orientation.x = input_direction.x
+	
 	if abs(velocity.x) <= running_speed:
 		out.x = delta * running_speed * input_direction.x
 		
@@ -127,14 +137,28 @@ func calculate_velocity(velocity, delta):
 	
 	return out
 
+###########################################################
+
 func _physics_process(delta):
-	var new_velocity = calculate_velocity(current_velocity, delta)
-	
-	current_velocity = move_and_slide(new_velocity, Vector2.UP) 
+	._physics_process(delta)
+	GUI.update_position(position)
+
+###########################################################
+
+func shoot():
+	var b_instance = Bullet.instance()
+	var bullet_mask = collision_mask 
+	if changed_world:
+		bullet_mask = bullet_mask | 256
+	else:
+		bullet_mask = bullet_mask | 128
+	b_instance.init(orientation, bullet_mask) #damage layer bit 5, ignore layer bit 0
+	owner.add_child(b_instance)
+	b_instance.position = position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GUI = get_parent().get_node_or_null("GUI")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -154,13 +178,16 @@ func _process(delta):
 			energy = min(energy,100)
 	if powerup_counter > 0:
 		energy = 100
-	get_node("GUI/MarginContainer/VBoxContainer/PowerBar/Gauge").set_value(energy)
+	
+	GUI.setPowerGauge(energy)
 	if (energy == 0):
 		_change_world(false)
 
 #########################################################
 #Changing colision mask if appropriate
 func _input(event):
+	if event.is_action_pressed("ui_shoot"):
+		shoot()
 	if event.is_action_pressed("change_world"):
 		if (not changed_world and not energy == 0) or changed_world:
 			if change_world_counter == change_world_cooldown:
@@ -168,23 +195,27 @@ func _input(event):
 
 func _change_world(flag: bool):
 	if flag != changed_world:
+
 		get_parent().get_node_or_null("Dimension1").change_state()
 		get_parent().get_node_or_null("Dimension2").change_state()
+
+		if changed_world:
+			collision_layer = 1
+		else:
+			collision_layer = 1024
+
 		changed_world = flag
 		change_world_counter = 0
 		for n in range(1,5):
 			set_collision_mask_bit(n, not get_collision_mask_bit(n))
-		$Area2D3.set_collision_mask_bit(1, get_collision_mask_bit(1))
-		$Area2D3.set_collision_mask_bit(2, get_collision_mask_bit(2))
-		$Area2D3.set_collision_mask_bit(5, get_collision_mask_bit(1))
-		$Area2D3.set_collision_mask_bit(6, get_collision_mask_bit(2))
-		$Area2D.set_collision_mask_bit(1, get_collision_mask_bit(1))
-		$Area2D.set_collision_mask_bit(2, get_collision_mask_bit(2))
-		$Area2D2.set_collision_mask_bit(1, get_collision_mask_bit(1))
-		$Area2D2.set_collision_mask_bit(2, get_collision_mask_bit(2))
-
+		$MiddleArea2D.set_collision_mask_bit(1, get_collision_mask_bit(1))
+		$MiddleArea2D.set_collision_mask_bit(2, get_collision_mask_bit(2))
+		$MiddleArea2D.set_collision_mask_bit(5, get_collision_mask_bit(1))
+		$MiddleArea2D.set_collision_mask_bit(6, get_collision_mask_bit(2))
+	
+		print(collision_layer)
 #########################################################
-func _on_Area2D3_body_entered(body):
+func _on_middle_Area2D_body_entered(body):
 	if body.name == "PowerUp":
 		powerup_counter = 200
 		body.queue_free()
