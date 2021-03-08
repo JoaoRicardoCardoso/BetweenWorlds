@@ -11,10 +11,9 @@ var timeout_counter = timeout
 # var a = 2
 # var b = "text"
 
-func init(direction, targeted, ignored):
+func init(direction, mask):
 	current_velocity = direction * travel_speed
-	set_collision_mask_bit(targeted, true)
-	set_collision_mask_bit(ignored, false)
+	collision_mask = mask
 	
 func disperse():
 	queue_free()

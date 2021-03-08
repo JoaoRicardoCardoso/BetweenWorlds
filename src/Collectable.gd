@@ -19,6 +19,15 @@ func _physics_process(delta):
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+func init(first_dimension):
+	if first_dimension:
+		$Area2D.collision_mask = 1
+		collision_mask = 2 + 8 + 32
+		collision_layer = 32
+	else:
+		$Area2D.collision_mask = 1024
+		collision_mask = 4 + 16 + 64
+		collision_layer = 64
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,6 +1,9 @@
 extends Actor
 class_name Player
 
+#GUI Controller
+var GUI = null
+
 #Instanceable Objects
 var Bullet = load("res://Projectiles/LinearBullet.tscn")
 
@@ -30,6 +33,13 @@ export var wall_jump_velocity_x = 300
 var wall_collisions_left = 0
 var wall_collisions_right = 0
 var wall_jump_flag = false
+
+var changed_world = false
+var energy = 100
+var change_world_cooldown:float = 1.0
+var change_world_counter:float = change_world_cooldown
+var powerup_counter:float = 0
+
 
 ####################################################
 #Dash functions
@@ -66,13 +76,13 @@ func calculate_stomp(velocity, input_direction):
 func _on_right_Area2D_body_entered(body):
 	wall_collisions_right += 1
 
-func _on_left_Area2D2_body_entered(body):
+func _on_left_Area2D_body_entered(body):
 	wall_collisions_left += 1
 
 func _on_right_Area2D_body_exited(body):
 	wall_collisions_right -= 1
 
-func _on_left_Area2D2_body_exited(body):
+func _on_left_Area2D_body_exited(body):
 	wall_collisions_left -= 1
 
 func calculate_wall_interaction(velocity, input_direction, delta):
@@ -129,21 +139,88 @@ func calculate_velocity(velocity, delta):
 
 ###########################################################
 
+func _physics_process(delta):
+	._physics_process(delta)
+	GUI.update_position(position)
+
+###########################################################
+
 func shoot():
 	var b_instance = Bullet.instance()
-	b_instance.init(orientation, 5, 0) #damage layer bit 5, ignore layer bit 0
+	var bullet_mask = collision_mask 
+	if changed_world:
+		bullet_mask = bullet_mask | 256
+	else:
+		bullet_mask = bullet_mask | 128
+	b_instance.init(orientation, bullet_mask) #damage layer bit 5, ignore layer bit 0
 	owner.add_child(b_instance)
 	b_instance.position = position
 
-func _process(delta):
-	if Input.is_action_just_pressed("ui_shoot"):
-		shoot()
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GUI = get_parent().get_node_or_null("GUI")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	powerup_counter -= delta*50
+	powerup_counter = max(powerup_counter,0)
+	if (changed_world):
+		change_world_counter += delta*5
+		change_world_counter = min(change_world_counter, change_world_cooldown)
+		energy -= delta*50
+		energy = max(energy,0)
+	else:
+		change_world_counter += delta*5
+		change_world_counter = min(change_world_counter, change_world_cooldown)
+		if (change_world_counter == change_world_cooldown):
+			energy += delta*25
+			energy = min(energy,100)
+	if powerup_counter > 0:
+		energy = 100
+	
+	GUI.setPowerGauge(energy)
+	if (energy == 0):
+		_change_world(false)
+
+#########################################################
+#Changing colision mask if appropriate
+func _input(event):
+	if event.is_action_pressed("ui_shoot"):
+		shoot()
+	if event.is_action_pressed("change_world"):
+		if (not changed_world and not energy == 0) or changed_world:
+			if change_world_counter == change_world_cooldown:
+				_change_world(not changed_world)
+
+func _change_world(flag: bool):
+	if flag != changed_world:
+		print(collision_layer)
+		if changed_world:
+			self.set_name("True")
+			collision_layer = 1
+		else:
+			self.set_name("False")
+			collision_layer = 1024
+		changed_world = flag
+		change_world_counter = 0
+		for n in range(1,5):
+			set_collision_mask_bit(n, not get_collision_mask_bit(n))
+		$MiddleArea2D.set_collision_mask_bit(1, get_collision_mask_bit(1))
+		$MiddleArea2D.set_collision_mask_bit(2, get_collision_mask_bit(2))
+		$MiddleArea2D.set_collision_mask_bit(5, get_collision_mask_bit(1))
+		$MiddleArea2D.set_collision_mask_bit(6, get_collision_mask_bit(2))
+	
+		print(collision_layer)
+#########################################################
+func _on_middle_Area2D_body_entered(body):
+	if body.name == "PowerUp":
+		powerup_counter = 200
+		body.queue_free()
+	else: 
+		print("DEAD") #create animation
+		running_speed = 0
+		jumping_speed = 0
+		if $CollisionShape2D/Sprite != null:
+			$CollisionShape2D/Sprite.queue_free()
+	

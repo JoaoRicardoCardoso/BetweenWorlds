@@ -22,7 +22,7 @@ func _ready():
 
 func shoot(direction):
 	var b_instance = Bullet.instance()
-	b_instance.init(direction, 0, 5) #damage layer 0, ignore layer 5
+	b_instance.init(direction, collision_mask) #damage layer 0, ignore layer 5
 	owner.add_child(b_instance)
 	b_instance.position = position
 
@@ -30,11 +30,13 @@ func shoot(direction):
 func _process(delta):
 	shot_counter -= delta
 	if shot_counter <= 0:
-		var player_direction = get_parent().get_node("Player").position - position
-		if player_direction.length() < aggro_range:
-			player_direction = player_direction.normalized()
-			shoot(player_direction)
-			shot_counter = shot_cooldown
+		var player = get_parent().get_node_or_null("Player")
+		if player != null:
+			var player_direction = player.position - position
+			if player_direction.length() < aggro_range:
+				player_direction = player_direction.normalized()
+				shoot(player_direction)
+				shot_counter = shot_cooldown
 
 
 func _on_Area2D_area_entered(area):

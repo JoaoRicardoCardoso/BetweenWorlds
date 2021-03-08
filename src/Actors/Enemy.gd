@@ -30,6 +30,7 @@ func _ready():
 func drop_item():
 	var drop_instance = Drop.instance()
 	owner.add_child(drop_instance)
+	drop_instance.init(get_collision_layer_bit(7))
 	drop_instance.position = position
 
 func handle_drops():
