@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://World/Dimension1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Dimension2.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Actors/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Actors/RangedEnemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://World/Hazards/Serial Port Hazard.tscn" type="PackedScene" id=7]
+[ext_resource path="res://World/Hazards/Pitfall.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
 
@@ -45,5 +47,13 @@ position = Vector2( 4536, -8 )
 position = Vector2( 1040, -56 )
 
 [node name="GUI" parent="." instance=ExtResource( 6 )]
-[connection signal="renamed" from="Player" to="Dimension2" method="_on_Player_renamed"]
+
+[node name="Serial Port Hazard" parent="." instance=ExtResource( 7 )]
+position = Vector2( 232, 232 )
+
+[node name="Pitfall" parent="." instance=ExtResource( 8 )]
+position = Vector2( -104, -95.9999 )
+scale = Vector2( 3, 100 )
+collision_layer = 524800
 [connection signal="renamed" from="Player" to="Dimension1" method="_on_Player_renamed"]
+[connection signal="renamed" from="Player" to="Dimension2" method="_on_Player_renamed"]
