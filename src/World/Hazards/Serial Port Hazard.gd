@@ -30,8 +30,6 @@ func _ready():
 		$Destructor.set_collision_mask_bit(9,true)
 	else:
 		$Destructor.set_collision_mask_bit(19,true)
-		
-	print($Destructor.collision_mask)
 	
 func instantiate():
 	var h_instance = DataHazard.instance()

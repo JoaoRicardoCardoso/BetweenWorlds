@@ -25,12 +25,13 @@ func shoot(direction):
 	b_instance.init(direction, collision_mask) #damage layer 0, ignore layer 5
 	owner.add_child(b_instance)
 	b_instance.position = position
+	b_instance.damage = damage
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	shot_counter -= delta
 	if shot_counter <= 0:
-		var player = get_parent().get_node_or_null("Player")
+		var player = get_parent().get_parent().get_node_or_null("Player")
 		if player != null:
 			var player_direction = player.position - position
 			if player_direction.length() < aggro_range:

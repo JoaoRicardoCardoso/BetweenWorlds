@@ -10,7 +10,8 @@ export var gravity = 500
 var current_velocity = Vector2(0,0)
 var orientation = Vector2(1,0)
 
-var health = 5
+var max_health = 5
+var health = max_health
 
 func calculate_velocity(velocity, delta):
 	pass

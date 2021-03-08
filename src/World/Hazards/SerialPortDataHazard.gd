@@ -12,7 +12,6 @@ func init(direction_vector, instance_speed, is_in_first_dimension):
 	direction = direction_vector
 	speed = instance_speed
 	init_collisions(is_in_first_dimension)
-	print(collision_layer)
 	
 func calculate_velocity(velocity, delta):
 	return direction * speed * delta

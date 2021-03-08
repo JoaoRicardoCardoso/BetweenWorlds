@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/GUI/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/GUI/label_HP_bg.png" type="Texture" id=2]
@@ -13,8 +13,6 @@
 size = 24
 extra_spacing_bottom = 2
 font_data = ExtResource( 1 )
-
-[sub_resource type="GDScript" id=2]
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
@@ -107,10 +105,10 @@ __meta__ = {
 margin_left = 133.0
 margin_right = 529.0
 margin_bottom = 53.0
+max_value = 100.0
 value = 100.0
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 6 )
-script = SubResource( 2 )
 
 [node name="PowerBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 86.0
@@ -141,3 +139,4 @@ texture_progress = ExtResource( 7 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HealthBar/Gauge" to="." method="_on_Gauge_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/PowerBar/Gauge" to="." method="_on_Gauge_value_changed"]

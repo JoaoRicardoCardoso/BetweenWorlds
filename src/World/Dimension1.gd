@@ -1,4 +1,13 @@
 extends Node2D
 
-func _on_Player_renamed():
-	visible = not visible
+var active = true
+
+func change_state():
+	active = not active
+	$Background.visible = active
+	if (active):		
+		modulate.a = 1
+		set_z_index(-1)
+	else:
+		modulate.a = 0.3
+		set_z_index(0)

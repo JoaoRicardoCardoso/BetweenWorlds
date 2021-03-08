@@ -5,7 +5,7 @@ class_name Enemy
 var Drop = load("res://Actors/Pickable.tscn")
 
 export var speed = 1000
-export var damage = 1
+export var damage = 10
 export var drop_rate:float = 1.0
 
 # Declare member variables here. Examples:
