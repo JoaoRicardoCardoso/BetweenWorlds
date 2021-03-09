@@ -38,7 +38,8 @@ var changed_world = false
 var energy = 100
 var change_world_cooldown:float = 1.0
 var change_world_counter:float = change_world_cooldown
-var powerup_counter:float = 0
+var coffee_counter:float = 0
+var stackoverflow_counter:float = 0
 
 
 ####################################################
@@ -165,8 +166,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	powerup_counter -= delta*50
-	powerup_counter = max(powerup_counter,0)
+	coffee_counter -= delta*50
+	coffee_counter = max(coffee_counter,0)
+	stackoverflow_counter -= delta*50
+	stackoverflow_counter = max(stackoverflow_counter,0)
 	if (changed_world):
 		change_world_counter += delta*5
 		change_world_counter = min(change_world_counter, change_world_cooldown)
@@ -178,7 +181,7 @@ func _process(delta):
 		if (change_world_counter == change_world_cooldown):
 			energy += delta*25
 			energy = min(energy,100)
-	if powerup_counter > 0:
+	if coffee_counter > 0:
 		energy = 100
 	
 	GUI.setPowerGauge(energy)
@@ -220,14 +223,24 @@ func _change_world(flag: bool):
 
 #########################################################
 func getCoffee():
-	powerup_counter = 200
+	coffee_counter = 200
+	
+func getStackoverflow():
+	stackoverflow_counter = 200
 
 func damage(value):
-	health -= value
+	if (stackoverflow_counter == 0):
+		health -= value
+	health = max(health, 0)
 	get_parent().get_node_or_null("GUI").setHealthGauge(health)
 	if health <= 0:
 		die()
+		
+func die():
+	health = 0
+	get_parent().get_node_or_null("GUI").setHealthGauge(health)
+	queue_free()
 
 func _on_MiddleArea2D_body_entered(body):
 	if (body.name) == "TileMap":
-		damage(max_health)
+		die()

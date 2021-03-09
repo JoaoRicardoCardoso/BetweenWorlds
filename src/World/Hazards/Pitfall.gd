@@ -17,5 +17,5 @@ func _ready():
 
 func affect_body(body):
 	if body is Actor:
-		body.damage(body.max_health)
+		body.die()
 

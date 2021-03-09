@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/Tiles/2.png" type="Texture" id=1]
 [ext_resource path="res://World/Platforms/Platform1.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://World/Misc/EnemyBarrier.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/Hazards/Pitfall.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/Hazards/Serial Port Hazard.tscn" type="PackedScene" id=12]
+[ext_resource path="res://World/PowerUps/Stackoverflow1.tscn" type="PackedScene" id=13]
 
 [sub_resource type="TileSet" id=1]
 0/name = "BG.png 0"
@@ -192,6 +193,9 @@ position = Vector2( 1944, 272 )
 
 [node name="Coffee1" parent="." instance=ExtResource( 6 )]
 position = Vector2( 664, 312 )
+
+[node name="Stackoverflow1" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1768, 320 )
 
 [node name="Area2D" parent="." instance=ExtResource( 10 )]
 position = Vector2( 1536, 328 )
