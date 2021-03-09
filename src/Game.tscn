@@ -17,4 +17,4 @@ light_mask = -2147483647
 [node name="GUI" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 418.601, 292.545 )
+position = Vector2( -32, 312 )
