@@ -16,7 +16,6 @@ extents = Vector2( 24, 56 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 10
 script = ExtResource( 1 )
-jumping_speed = 600
 wall_slide_velocity = 500
 wall_jump_velocity_y = 300
 wall_jump_velocity_x = 500
@@ -53,6 +52,7 @@ collision_mask = 2
 shape = SubResource( 3 )
 
 [node name="Shield" type="Sprite" parent="."]
+visible = false
 position = Vector2( 4.87268e-06, 4.76837e-06 )
 scale = Vector2( 0.316547, 0.316547 )
 texture = ExtResource( 3 )

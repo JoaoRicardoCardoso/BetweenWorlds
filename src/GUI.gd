@@ -3,10 +3,14 @@ extends Control
 export var movement_margin = Vector2(50,50)
 onready var PowerBar = get_node("MarginContainer/VBoxContainer/PowerBar/Gauge")
 onready var HealthBar = get_node("MarginContainer/VBoxContainer/HealthBar/Gauge")
+onready var timeM = get_node("MarginContainer/VBoxContainer/HealthBar/Time/Background/TimeM")
+onready var timeS = get_node("MarginContainer/VBoxContainer/HealthBar/Time/Background/TimeS")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 var current_position = Vector2(0,0)
+var secs:float = 0.0
+var mins = 0
 
 func update_position(new_position):
 	var position = get_position()
@@ -36,6 +40,10 @@ func setVSAmmo(value):
 	var textBox = $MarginContainer/VBoxContainer/Ammo/VSAmmo/Background/Number
 	textBox.text = String(value)
 	
+func setScore(value):
+	var textBox = $MarginContainer/VBoxContainer/HealthBar/Score/Background/Score
+	textBox.text = String(value)
+	
 func activateCoffee():
 	PowerBar.modulate.g = 0
 	
@@ -48,5 +56,17 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	secs += delta
+	if floor(secs) >= 60:
+		mins += 1
+		secs -= 60
+	if secs < 10:
+		timeS.text = "0" + String(floor(secs))
+	else:
+		timeS.text = String(floor(secs))
+		
+	if mins < 10:
+		timeM.text = "0" + String(mins)
+	else:
+		timeM.text = String(mins)
