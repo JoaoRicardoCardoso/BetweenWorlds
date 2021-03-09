@@ -26,9 +26,10 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -512.0
-margin_top = -304.0
+margin_top = -303.0
 margin_right = -512.0
-margin_bottom = -304.0
+margin_bottom = -303.0
+rect_scale = Vector2( 0.8, 0.8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -66,44 +67,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Count" type="MarginContainer" parent="MarginContainer/VBoxContainer/HealthBar"]
-margin_left = 29.0
-margin_right = 129.0
-margin_bottom = 53.0
-
-[node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HealthBar/Count"]
-margin_right = 100.0
-margin_bottom = 53.0
-rect_min_size = Vector2( 100, 40 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="TextureRect" parent="MarginContainer/VBoxContainer/HealthBar/Count/Background"]
-margin_right = 50.0
-margin_bottom = 50.0
-texture = ExtResource( 4 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Number" type="Label" parent="MarginContainer/VBoxContainer/HealthBar/Count/Background"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -5.0
-custom_fonts/font = SubResource( 1 )
-text = "100"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Gauge" type="TextureProgress" parent="MarginContainer/VBoxContainer/HealthBar"]
-margin_left = 133.0
-margin_right = 529.0
+margin_left = 29.0
+margin_right = 425.0
 margin_bottom = 53.0
 value = 100.0
 texture_under = ExtResource( 5 )
@@ -112,28 +78,136 @@ texture_progress = ExtResource( 6 )
 [node name="PowerBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 86.0
 margin_right = 1024.0
-margin_bottom = 126.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 0, 30 )
 
 [node name="Spacing" type="MarginContainer" parent="MarginContainer/VBoxContainer/PowerBar"]
-margin_right = 130.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 130, 0 )
+margin_right = 25.0
+margin_bottom = 30.0
 
 [node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/PowerBar/Spacing"]
-margin_right = 130.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 100, 40 )
+margin_right = 25.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 25, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Gauge" type="TextureProgress" parent="MarginContainer/VBoxContainer/PowerBar"]
-margin_left = 134.0
-margin_right = 530.0
-margin_bottom = 40.0
+margin_left = 29.0
+margin_right = 425.0
+margin_bottom = 30.0
 value = 100.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 7 )
+
+[node name="Ammo" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 120.0
+margin_right = 1024.0
+margin_bottom = 160.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacing" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ammo"]
+margin_right = 30.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Ammo/Spacing"]
+margin_right = 30.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 25, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CursorAmmo" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ammo"]
+margin_left = 34.0
+margin_right = 134.0
+margin_bottom = 40.0
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Ammo/CursorAmmo"]
+margin_right = 100.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 40 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="MarginContainer/VBoxContainer/Ammo/CursorAmmo/Background"]
+margin_right = 50.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="MarginContainer/VBoxContainer/Ammo/CursorAmmo/Background"]
+anchor_right = 0.895
+anchor_bottom = 1.0
+margin_left = 5.57397
+margin_top = 3.0
+margin_right = 0.573975
+custom_fonts/font = SubResource( 1 )
+text = "100"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacing2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ammo"]
+margin_left = 138.0
+margin_right = 143.0
+margin_bottom = 40.0
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Ammo/Spacing2"]
+margin_right = 5.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 5, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSAmmo" type="MarginContainer" parent="MarginContainer/VBoxContainer/Ammo"]
+margin_left = 147.0
+margin_right = 247.0
+margin_bottom = 40.0
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Ammo/VSAmmo"]
+margin_right = 100.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 40 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="MarginContainer/VBoxContainer/Ammo/VSAmmo/Background"]
+margin_right = 50.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="MarginContainer/VBoxContainer/Ammo/VSAmmo/Background"]
+anchor_right = 0.895
+anchor_bottom = 1.0
+margin_left = 5.57397
+margin_top = 3.0
+margin_right = 0.573975
+custom_fonts/font = SubResource( 1 )
+text = "100"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

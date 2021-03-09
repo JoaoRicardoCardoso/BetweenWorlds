@@ -41,6 +41,9 @@ var change_world_counter:float = 0
 var coffee_counter:float = 0
 var stackoverflow_counter:float = 0
 
+#Shooting variables
+export var CursorAmmo = 20
+export var VSAmmo = 5
 
 ####################################################
 #Dash functions
@@ -147,7 +150,19 @@ func _physics_process(delta):
 ###########################################################
 
 func shoot():
-	var b_instance = Bullet.instance()
+	var b_instance = null
+	
+	if changed_world and VSAmmo > 0:
+		b_instance = Bullet.instance()
+		VSAmmo -= 1
+		GUI.setVSAmmo(VSAmmo)
+	elif not changed_world and CursorAmmo > 0:
+		b_instance = Bullet.instance()
+		CursorAmmo -= 1
+		GUI.setCursorAmmo(CursorAmmo)
+	else:
+		return
+		
 	var bullet_mask = collision_mask 
 	if changed_world:
 		bullet_mask = bullet_mask | 256
@@ -162,6 +177,8 @@ func _ready():
 	GUI = get_parent().get_node_or_null("GUI")
 	health = 100
 	max_health = 100
+	GUI.setCursorAmmo(CursorAmmo)
+	GUI.setVSAmmo(VSAmmo)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

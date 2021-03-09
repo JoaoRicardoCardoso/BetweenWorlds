@@ -28,6 +28,14 @@ func setPowerGauge(value):
 func setHealthGauge(value):
 	HealthBar.set_value(value)
 	
+func setCursorAmmo(value):
+	var textBox = $MarginContainer/VBoxContainer/Ammo/CursorAmmo/Background/Number
+	textBox.text = String(value)
+	
+func setVSAmmo(value):
+	var textBox = $MarginContainer/VBoxContainer/Ammo/VSAmmo/Background/Number
+	textBox.text = String(value)
+	
 func activateCoffee():
 	PowerBar.modulate.g = 0
 	
