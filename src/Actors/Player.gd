@@ -264,6 +264,7 @@ func damage(value):
 func die():
 	health = 0
 	GUI.setHealthGauge(health)
+	get_parent().playerDied()
 	queue_free()
 
 func _on_MiddleArea2D_body_entered(body):

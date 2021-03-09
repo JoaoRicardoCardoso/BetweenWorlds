@@ -9,8 +9,6 @@ onready var timeS = get_node("MarginContainer/VBoxContainer/HealthBar/Time/Backg
 # var a = 2
 # var b = "text"
 var current_position = Vector2(0,0)
-var secs:float = 0.0
-var mins = 0
 
 func update_position(new_position):
 	var position = get_position()
@@ -44,6 +42,16 @@ func setScore(value):
 	var textBox = $MarginContainer/VBoxContainer/HealthBar/Score/Background/Score
 	textBox.text = String(value)
 	
+func setTime(mins, secs):
+	if secs < 10:
+		timeS.text = "0" + String(secs)
+	else:
+		timeS.text = String(secs)
+	if mins < 10:
+		timeM.text = "0" + String(mins)
+	else:
+		timeM.text = String(mins)
+	
 func activateCoffee():
 	PowerBar.modulate.g = 0
 	
@@ -54,19 +62,3 @@ func deactivateCoffee():
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	secs += delta
-	if floor(secs) >= 60:
-		mins += 1
-		secs -= 60
-	if secs < 10:
-		timeS.text = "0" + String(floor(secs))
-	else:
-		timeS.text = String(floor(secs))
-		
-	if mins < 10:
-		timeM.text = "0" + String(mins)
-	else:
-		timeM.text = String(mins)
