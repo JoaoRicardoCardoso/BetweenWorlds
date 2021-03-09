@@ -8,9 +8,10 @@
 [node name="World" type="Node2D"]
 
 [node name="Dimension1" parent="." instance=ExtResource( 1 )]
+z_index = -1
 
 [node name="Dimension2" parent="." instance=ExtResource( 2 )]
-modulate = Color( 1, 1, 1, 0.2 )
+modulate = Color( 1, 1, 1, 0.3 )
 light_mask = -2147483647
 
 [node name="Player" parent="." instance=ExtResource( 3 )]

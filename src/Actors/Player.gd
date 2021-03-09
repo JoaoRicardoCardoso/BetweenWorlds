@@ -183,6 +183,11 @@ func _process(delta):
 			energy = min(energy,100)
 	if coffee_counter > 0:
 		energy = 100
+	else:
+		GUI.deactivateCoffee()
+		
+	if stackoverflow_counter == 0:
+		$Shield.visible = false
 	
 	GUI.setPowerGauge(energy)
 	
@@ -224,21 +229,23 @@ func _change_world(flag: bool):
 #########################################################
 func getCoffee():
 	coffee_counter = 200
+	GUI.activateCoffee()
 	
 func getStackoverflow():
 	stackoverflow_counter = 200
+	$Shield.visible = true
 
 func damage(value):
 	if (stackoverflow_counter == 0):
 		health -= value
 	health = max(health, 0)
-	get_parent().get_node_or_null("GUI").setHealthGauge(health)
+	GUI.setHealthGauge(health)
 	if health <= 0:
 		die()
 		
 func die():
 	health = 0
-	get_parent().get_node_or_null("GUI").setHealthGauge(health)
+	GUI.setHealthGauge(health)
 	queue_free()
 
 func _on_MiddleArea2D_body_entered(body):
