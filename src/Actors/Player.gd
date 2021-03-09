@@ -269,3 +269,11 @@ func die():
 func _on_MiddleArea2D_body_entered(body):
 	if (body.name) == "TileMap":
 		die()
+
+func add_CursorAmmo(value):
+	CursorAmmo += value
+	GUI.setCursorAmmo(CursorAmmo)
+	
+func add_VSAmmo(value):
+	VSAmmo += value
+	GUI.setVSAmmo(VSAmmo)

@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/GUI/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/GUI/label_HP_bg.png" type="Texture" id=2]
 [ext_resource path="res://assets/GUI/powerbar_bg.png" type="Texture" id=3]
-[ext_resource path="res://assets/GUI/label_HP.png" type="Texture" id=4]
+[ext_resource path="res://assets/Player/vscode.png" type="Texture" id=4]
 [ext_resource path="res://assets/GUI/lifebar_bg.png" type="Texture" id=5]
 [ext_resource path="res://assets/GUI/lifebar_fill.png" type="Texture" id=6]
 [ext_resource path="res://assets/GUI/powerbar_fill.png" type="Texture" id=7]
 [ext_resource path="res://GUI.gd" type="Script" id=8]
+[ext_resource path="res://assets/Player/mouse.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -136,14 +137,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="TextureRect" parent="MarginContainer/VBoxContainer/Ammo/CursorAmmo/Background"]
-margin_right = 50.0
-margin_bottom = 40.0
-texture = ExtResource( 4 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="mouse" type="Sprite" parent="MarginContainer/VBoxContainer/Ammo/CursorAmmo/Background"]
+position = Vector2( 26, 18.75 )
+scale = Vector2( 0.059498, 0.059498 )
+texture = ExtResource( 9 )
 
 [node name="Number" type="Label" parent="MarginContainer/VBoxContainer/Ammo/CursorAmmo/Background"]
 anchor_right = 0.895
@@ -186,14 +183,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="TextureRect" parent="MarginContainer/VBoxContainer/Ammo/VSAmmo/Background"]
-margin_right = 50.0
-margin_bottom = 40.0
+[node name="vscode" type="Sprite" parent="MarginContainer/VBoxContainer/Ammo/VSAmmo/Background"]
+position = Vector2( 24.25, 20 )
+scale = Vector2( 0.00838235, 0.00838235 )
 texture = ExtResource( 4 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Number" type="Label" parent="MarginContainer/VBoxContainer/Ammo/VSAmmo/Background"]
 anchor_right = 0.895
