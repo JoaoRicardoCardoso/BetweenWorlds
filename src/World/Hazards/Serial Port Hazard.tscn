@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://World/Hazards/Serial Port Hazard.gd" type="Script" id=1]
-[ext_resource path="res://assets/Player/Player.png" type="Texture" id=2]
+[ext_resource path="res://assets/Hazards/SerialPort.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 5 )
@@ -15,8 +15,9 @@ instance_frequency = 12.614
 instance_speed = 100
 
 [node name="Instantiator" type="Sprite" parent="."]
-position = Vector2( 1.3113e-06, -15.75 )
-scale = Vector2( 0.164948, 0.0748848 )
+position = Vector2( -4.54747e-13, -32 )
+rotation = -3.14159
+scale = Vector2( 0.3125, 0.5 )
 z_index = 1
 texture = ExtResource( 2 )
 
@@ -31,7 +32,7 @@ position = Vector2( 0, 13 )
 shape = SubResource( 1 )
 
 [node name="Player" type="Sprite" parent="Destructor/CollisionShape2D"]
-position = Vector2( 0, -13 )
-scale = Vector2( 0.164948, 0.0773329 )
+position = Vector2( 0, 3 )
+scale = Vector2( 0.3125, 0.5 )
 texture = ExtResource( 2 )
 [connection signal="area_entered" from="Destructor" to="." method="_on_Destructor_area_entered"]

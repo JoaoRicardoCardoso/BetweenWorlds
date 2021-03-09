@@ -36,8 +36,8 @@ var wall_jump_flag = false
 
 var changed_world = false
 var energy = 100
-var change_world_cooldown:float = 1.0
-var change_world_counter:float = change_world_cooldown
+export var change_world_cooldown:float = 1.0
+var change_world_counter:float = 0
 var coffee_counter:float = 0
 var stackoverflow_counter:float = 0
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player.png-61b615209b2db0e0e302f774418adebd.stex"
+path="res://.import/stackoverflow.png-878b185e855a6928732af8e16b203a96.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Player/Player.png"
-dest_files=[ "res://.import/Player.png-61b615209b2db0e0e302f774418adebd.stex" ]
+source_file="res://assets/Powerups/stackoverflow.png"
+dest_files=[ "res://.import/stackoverflow.png-878b185e855a6928732af8e16b203a96.stex" ]
 
 [params]
 

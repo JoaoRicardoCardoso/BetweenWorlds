@@ -1,40 +1,40 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/Player/Player.png" type="Texture" id=2]
 [ext_resource path="res://assets/Player/shield.png" type="Texture" id=3]
+[ext_resource path="res://assets/Player/Idle.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 63, 63 )
+extents = Vector2( 30.6327, 64 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 56 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 56, 56 )
+extents = Vector2( 24, 56 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 10
 script = ExtResource( 1 )
 jumping_speed = 600
-wall_slide_velocity = 1600
-wall_jump_velocity_y = 1600
-wall_jump_velocity_x = 1600
+wall_slide_velocity = 500
+wall_jump_velocity_y = 300
+wall_jump_velocity_x = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
-position = Vector2( 1.90735e-06, 0 )
-scale = Vector2( 0.263918, 0.294931 )
-texture = ExtResource( 2 )
+[node name="Idle" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( 54.5408, -5.28364 )
+scale = Vector2( 0.315603, 0.31383 )
+texture = ExtResource( 4 )
 
 [node name="RightArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArea2D"]
-position = Vector2( 64, 0 )
+position = Vector2( 32, 0 )
 shape = SubResource( 2 )
 
 [node name="LeftArea2D" type="Area2D" parent="."]
@@ -42,7 +42,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea2D"]
-position = Vector2( -64, 0 )
+position = Vector2( -32, 0 )
 shape = SubResource( 2 )
 
 [node name="MiddleArea2D" type="Area2D" parent="."]
@@ -53,8 +53,8 @@ collision_mask = 2
 shape = SubResource( 3 )
 
 [node name="Shield" type="Sprite" parent="."]
-visible = false
-scale = Vector2( 0.348022, 0.348022 )
+position = Vector2( 4.87268e-06, 4.76837e-06 )
+scale = Vector2( 0.316547, 0.316547 )
 texture = ExtResource( 3 )
 [connection signal="body_entered" from="RightArea2D" to="." method="_on_right_Area2D_body_entered"]
 [connection signal="body_exited" from="RightArea2D" to="." method="_on_right_Area2D_body_exited"]

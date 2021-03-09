@@ -14,12 +14,7 @@ z_index = -1
 modulate = Color( 1, 1, 1, 0.3 )
 light_mask = -2147483647
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 513.286, 298.769 )
-jumping_speed = 500
-wall_jump_velocity_y = 250
-wall_jump_velocity_x = 400
-
 [node name="GUI" parent="." instance=ExtResource( 6 )]
-[connection signal="renamed" from="Player" to="Dimension2" method="_on_Player_renamed"]
-[connection signal="renamed" from="Player" to="Dimension1" method="_on_Player_renamed"]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 418.601, 292.545 )
