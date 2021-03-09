@@ -2,7 +2,7 @@ extends Enemy
 class_name RangedEnemy
 
 #Instanceable Objects
-var Bullet = load("res://Projectiles/LinearBullet.tscn")
+var Bullet = load("res://Projectiles/EnemyBullet.tscn")
 
 export var shot_cooldown:float = 1.0
 export var aggro_range = 1000
@@ -21,6 +21,7 @@ func calculate_velocity(velocity, delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fixed_position = position
+	Drop = load("res://Ammo/MouseAmmo.tscn")
 
 func shoot(direction):
 	var b_instance = Bullet.instance()

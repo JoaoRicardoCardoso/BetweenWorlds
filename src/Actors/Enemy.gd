@@ -2,7 +2,7 @@ extends Actor
 class_name Enemy
 
 #Instanceable Objects
-var Drop = load("res://Actors/Pickable.tscn")
+var Drop = load("res://Ammo/VSCodeAmmo.tscn")
 
 export var speed = 1000
 export var damage = 10

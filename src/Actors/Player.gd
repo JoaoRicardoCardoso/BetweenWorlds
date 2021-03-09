@@ -5,11 +5,12 @@ class_name Player
 var GUI = null
 
 #Instanceable Objects
-var Bullet = load("res://Projectiles/LinearBullet.tscn")
+var Bullet1 = load("res://Projectiles/MouseBullet.tscn")
+var Bullet2 = load("res://Projectiles/VSCodeBullet.tscn")
 
 #Base variables
 export var running_speed = 10000
-export var jumping_speed = 10000
+export var jumping_speed = 600
 
 #Dash variables
 export var dash_speed = 12000
@@ -147,7 +148,11 @@ func _physics_process(delta):
 ###########################################################
 
 func shoot():
-	var b_instance = Bullet.instance()
+	var b_instance
+	if changed_world:
+		b_instance = Bullet2.instance()
+	else:
+		b_instance = Bullet1.instance()
 	var bullet_mask = collision_mask 
 	if changed_world:
 		bullet_mask = bullet_mask | 256
