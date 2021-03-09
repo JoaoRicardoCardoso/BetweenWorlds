@@ -5,11 +5,12 @@ class_name Player
 var GUI = null
 
 #Instanceable Objects
-var Bullet = load("res://Projectiles/LinearBullet.tscn")
+var Bullet1 = load("res://Projectiles/MouseBullet.tscn")
+var Bullet2 = load("res://Projectiles/VSCodeBullet.tscn")
 
 #Base variables
 export var running_speed = 10000
-export var jumping_speed = 10000
+export var jumping_speed = 600
 
 #Dash variables
 export var dash_speed = 12000
@@ -153,11 +154,11 @@ func shoot():
 	var b_instance = null
 	
 	if changed_world and VSAmmo > 0:
-		b_instance = Bullet.instance()
+		b_instance = Bullet2.instance()
 		VSAmmo -= 1
 		GUI.setVSAmmo(VSAmmo)
 	elif not changed_world and CursorAmmo > 0:
-		b_instance = Bullet.instance()
+		b_instance = Bullet1.instance()
 		CursorAmmo -= 1
 		GUI.setCursorAmmo(CursorAmmo)
 	else:

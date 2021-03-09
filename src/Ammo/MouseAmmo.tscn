@@ -1,11 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Actors/Collectable.gd" type="Script" id=1]
-[ext_resource path="res://assets/Enemy/Pickable.png" type="Texture" id=2]
-
-
-
-
+[ext_resource path="res://Ammo/Collectable.gd" type="Script" id=1]
+[ext_resource path="res://assets/Ammo/mouse_ammo.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 160, 160 )
@@ -28,7 +24,7 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="Sem_Titulo" type="Sprite" parent="CollisionShape2D"]
+[node name="mouse_ammo" type="Sprite" parent="CollisionShape2D"]
 scale = Vector2( 0.725773, 0.81106 )
 texture = ExtResource( 2 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Player_body_entered"]
