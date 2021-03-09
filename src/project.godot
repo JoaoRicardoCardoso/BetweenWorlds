@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://World/Hazards/Hazard.gd"
 }, {
+"base": "Area2D",
+"class": "LinearBullet",
+"language": "GDScript",
+"path": "res://Projectiles/LinearBullet.gd"
+}, {
 "base": "Actor",
 "class": "Player",
 "language": "GDScript",
@@ -38,14 +43,21 @@ _global_script_classes=[ {
 "class": "SerialPortDataHazard",
 "language": "GDScript",
 "path": "res://World/Hazards/SerialPortDataHazard.gd"
+}, {
+"base": "LinearBullet",
+"class": "VSCodeBullet",
+"language": "GDScript",
+"path": "res://Projectiles/VSCodeBullet.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
 "Enemy": "",
 "Hazard": "",
+"LinearBullet": "",
 "Player": "",
 "RangedEnemy": "",
-"SerialPortDataHazard": ""
+"SerialPortDataHazard": "",
+"VSCodeBullet": ""
 }
 
 [application]

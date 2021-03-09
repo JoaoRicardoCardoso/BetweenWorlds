@@ -1,47 +1,53 @@
-extends Area2D
+extends LinearBullet
+class_name VSCodeBullet
 
-export var travel_speed = 1000
-export var timeout:float = 1
-export var damage = 1
+export var bullet_gravity = 2500
+export var vertical_impulse = 1000
+export var max_explosion_interval:float = 0.2
+export var max_explosion_radius_expansion:float = 10
+export var explosion_damage = 3
 
-var current_velocity = Vector2(0,0)
-var timeout_counter = timeout
+var exploding = false
+var explosion_counter = 0
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
 func init(direction, mask):
-	current_velocity = direction * travel_speed
-	collision_mask = mask
-	
-func disperse():
-	queue_free()
+	.init(direction,mask)
+	$BlastRadius.collision_mask = mask
+	current_velocity.y -= vertical_impulse
 
-func _physics_process(delta):
-	if timeout_counter < 0:
-		disperse()
-		return
-		
-	timeout_counter -= delta
-	position += current_velocity * delta
-	
-
+func calculate_velocity(velocity, delta):
+	if exploding:
+		return Vector2(0,0)
+	var out = velocity
+	out.y += bullet_gravity * delta
+	out.x = direction_vector.x * travel_speed
+	return out
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-
 func _on_Bullet_body_entered(body):
 	if body is Actor:
-		body.damage(damage)
-		
-	queue_free()
+		body.damage(damage)	
+	exploding = true
+	$CollisionShape2D/vscode.visible = false
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if exploding:
+		if explosion_counter >= max_explosion_interval:
+			queue_free()
+			return
+		explosion_counter += delta
+		var radius = explosion_counter / max_explosion_interval * max_explosion_radius_expansion
+		$BlastRadius.scale.x = radius
+		$BlastRadius.scale.y = radius
+
+func _on_BlastRadius_body_entered(body):
+	if exploding and body is Actor:
+		body.damage(explosion_damage)
