@@ -30,6 +30,7 @@ func handle_drops():
 	pass
 
 func die():
+	get_parent().get_parent().addPoints(200)
 	handle_drops()
 	queue_free()
 

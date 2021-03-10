@@ -36,15 +36,15 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 1024.0
+margin_right = 1246.0
 margin_bottom = 600.0
 
 [node name="Spacing" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 1024.0
+margin_right = 1246.0
 margin_bottom = 25.0
 
 [node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Spacing"]
-margin_right = 1024.0
+margin_right = 1246.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 100, 25 )
 __meta__ = {
@@ -53,7 +53,7 @@ __meta__ = {
 
 [node name="HealthBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 29.0
-margin_right = 1024.0
+margin_right = 1246.0
 margin_bottom = 82.0
 
 [node name="Spacing" type="MarginContainer" parent="MarginContainer/VBoxContainer/HealthBar"]
@@ -76,9 +76,137 @@ value = 100.0
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 6 )
 
+[node name="Spacing2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HealthBar"]
+margin_left = 429.0
+margin_right = 979.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 7, 0 )
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HealthBar/Spacing2"]
+margin_right = 550.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 550, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="MarginContainer" parent="MarginContainer/VBoxContainer/HealthBar"]
+margin_left = 983.0
+margin_right = 1133.0
+margin_bottom = 53.0
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HealthBar/Score"]
+margin_right = 150.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 150, 40 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreTitle" type="Label" parent="MarginContainer/VBoxContainer/HealthBar/Score/Background"]
+margin_left = 7.0
+margin_top = 10.0
+margin_right = 77.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 1 )
+text = "Score:"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="MarginContainer/VBoxContainer/HealthBar/Score/Background"]
+anchor_right = 0.895
+anchor_bottom = 1.0
+margin_left = 87.0
+margin_top = 10.0
+margin_right = 2.75
+margin_bottom = -3.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacing3" type="MarginContainer" parent="MarginContainer/VBoxContainer/HealthBar"]
+margin_left = 1137.0
+margin_right = 1142.0
+margin_bottom = 53.0
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HealthBar/Spacing3"]
+margin_right = 5.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 5, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="MarginContainer" parent="MarginContainer/VBoxContainer/HealthBar"]
+margin_left = 1146.0
+margin_right = 1246.0
+margin_bottom = 53.0
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HealthBar/Time"]
+margin_right = 100.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 100, 40 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeS" type="Label" parent="MarginContainer/VBoxContainer/HealthBar/Time/Background"]
+anchor_right = 0.895
+anchor_bottom = 1.0
+margin_left = 54.0
+margin_top = 10.0
+margin_right = 2.5
+margin_bottom = -3.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeSeparator" type="Label" parent="MarginContainer/VBoxContainer/HealthBar/Time/Background"]
+anchor_right = 0.895
+anchor_bottom = 1.0
+margin_left = 34.0
+margin_top = 7.0
+margin_right = -37.5
+margin_bottom = -3.25003
+custom_fonts/font = SubResource( 1 )
+text = ":"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeM" type="Label" parent="MarginContainer/VBoxContainer/HealthBar/Time/Background"]
+anchor_right = 0.895
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 10.0
+margin_right = -47.5
+margin_bottom = -3.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PowerBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 86.0
-margin_right = 1024.0
+margin_right = 1246.0
 margin_bottom = 116.0
 rect_min_size = Vector2( 0, 30 )
 
@@ -104,7 +232,7 @@ texture_progress = ExtResource( 7 )
 
 [node name="Ammo" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 120.0
-margin_right = 1024.0
+margin_right = 1246.0
 margin_bottom = 160.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -204,5 +332,3 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/HealthBar/Gauge" to="." method="_on_Gauge_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/PowerBar/Gauge" to="." method="_on_Gauge_value_changed"]
