@@ -11,7 +11,7 @@
 z_index = -1
 
 [node name="Dimension2" parent="." instance=ExtResource( 2 )]
-modulate = Color( 1, 1, 1, 0.3 )
+modulate = Color( 1, 1, 1, 0.301961 )
 light_mask = -2147483647
 
 [node name="GUI" parent="." instance=ExtResource( 6 )]
