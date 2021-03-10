@@ -266,6 +266,10 @@ func die():
 	GUI.setHealthGauge(health)
 	get_parent().playerDied()
 	queue_free()
+	
+func win():
+	get_parent().playerWon()
+	queue_free()
 
 func _on_MiddleArea2D_body_entered(body):
 	if (body.name) == "TileMap":
