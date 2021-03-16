@@ -174,12 +174,12 @@ func shoot():
 	else:
 		bullet_mask = bullet_mask | 128
 	b_instance.init(orientation, bullet_mask) #damage layer bit 5, ignore layer bit 0
-	owner.add_child(b_instance)
-	b_instance.position = position
+	get_tree().current_scene.get_node_or_null("Bullets").add_child(b_instance)
+	b_instance.global_position = global_position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GUI = get_parent().get_node_or_null("GUI")
+	GUI = get_tree().current_scene.get_node_or_null("GUI")
 	health = 100
 	max_health = 100
 	GUI.setCursorAmmo(CursorAmmo)

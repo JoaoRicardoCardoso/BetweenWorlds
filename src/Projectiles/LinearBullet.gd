@@ -2,7 +2,7 @@ extends Area2D
 class_name LinearBullet
 
 export var travel_speed = 1000
-export var timeout:float = 1
+export var timeout:float = 2
 export var damage = 1
 
 var current_velocity = Vector2(0,0)

@@ -27,7 +27,7 @@ func shoot(direction):
 	var b_instance = Bullet.instance()
 	b_instance.init(direction, collision_mask) #damage layer 0, ignore layer 5
 	owner.add_child(b_instance)
-	b_instance.position = global_position
+	b_instance.global_position = global_position
 	b_instance.damage = damage
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

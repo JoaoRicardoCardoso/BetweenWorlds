@@ -4,10 +4,10 @@
 [ext_resource path="res://assets/Player/vscode.png" type="Texture" id=2]
 [ext_resource path="res://assets/Enemy/Enemy.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 6.37814
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 8.0
 
 [node name="VSCodeBullet" type="Area2D"]
@@ -19,14 +19,14 @@ script = ExtResource( 1 )
 scale = Vector2( 1e-05, 1e-05 )
 
 [node name="BlastShape" type="CollisionShape2D" parent="BlastRadius"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Blast" type="Sprite" parent="BlastRadius/BlastShape"]
 scale = Vector2( 0.015, 0.015 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="vscode" type="Sprite" parent="CollisionShape2D"]
 position = Vector2( 2.38419e-07, 2.38419e-07 )
