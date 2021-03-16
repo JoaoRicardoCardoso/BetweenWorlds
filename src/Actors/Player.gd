@@ -137,8 +137,9 @@ func calculate_velocity(velocity, delta):
 	
 	if is_on_floor() and Input.is_action_just_pressed("ui_jump"):
 		out.y = -jumping_speed
-	
 	out = calculate_wall_interaction(out, input_direction, delta)
+	
+	setAnimation(out, input_direction);
 	
 	return out
 
@@ -221,6 +222,25 @@ func _input(event):
 		if (not changed_world and not energy == 0) or changed_world:
 			if change_world_counter == change_world_cooldown:
 				_change_world(not changed_world)
+				
+func setAnimation(velocity, input_direction):
+	if input_direction.x < 0:
+		$AnimatedSprite.flip_h = true
+		$AnimatedSprite.offset.x = -7.8
+	elif input_direction.x > 0:
+		$AnimatedSprite.flip_h = false
+		$AnimatedSprite.offset.x = 0
+	if is_on_floor():
+		if input_direction.x == 0:
+			$AnimatedSprite.animation = "idle"
+		else:
+			$AnimatedSprite.animation = "run"
+	else:
+		if velocity.y < 0:
+			$AnimatedSprite.animation = "jump"
+		elif velocity.y > 0:
+			$AnimatedSprite.animation = "jump_landing"
+		
 
 func _change_world(flag: bool):
 	if flag != changed_world:

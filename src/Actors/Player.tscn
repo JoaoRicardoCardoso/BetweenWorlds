@@ -1,16 +1,66 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Actors/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/Player/Sprite/idle-04.png" type="Texture" id=2]
 [ext_resource path="res://assets/Player/shield.png" type="Texture" id=3]
 [ext_resource path="res://assets/Player/Idle.png" type="Texture" id=4]
+[ext_resource path="res://assets/Player/Sprite/idle-02.png" type="Texture" id=5]
+[ext_resource path="res://assets/Player/Sprite/idle-05.png" type="Texture" id=6]
+[ext_resource path="res://assets/Player/Sprite/idle-06.png" type="Texture" id=7]
+[ext_resource path="res://assets/Player/Sprite/idle-01.png" type="Texture" id=8]
+[ext_resource path="res://assets/Player/Sprite/idle-03.png" type="Texture" id=9]
+[ext_resource path="res://assets/Player/Sprite/run-07.png" type="Texture" id=10]
+[ext_resource path="res://assets/Player/Sprite/run-03.png" type="Texture" id=11]
+[ext_resource path="res://assets/Player/Sprite/run-04.png" type="Texture" id=12]
+[ext_resource path="res://assets/Player/Sprite/run-06.png" type="Texture" id=13]
+[ext_resource path="res://assets/Player/Sprite/run-01.png" type="Texture" id=14]
+[ext_resource path="res://assets/Player/Sprite/run-05.png" type="Texture" id=15]
+[ext_resource path="res://assets/Player/Sprite/run-02.png" type="Texture" id=16]
+[ext_resource path="res://assets/Player/Sprite/dead-02.png" type="Texture" id=17]
+[ext_resource path="res://assets/Player/Sprite/jump-landing-03.png" type="Texture" id=18]
+[ext_resource path="res://assets/Player/Sprite/jump-landing-01.png" type="Texture" id=19]
+[ext_resource path="res://assets/Player/Sprite/jump-01.png" type="Texture" id=20]
+[ext_resource path="res://assets/Player/Sprite/dead-03.png" type="Texture" id=21]
+[ext_resource path="res://assets/Player/Sprite/dead-04.png" type="Texture" id=22]
+[ext_resource path="res://assets/Player/Sprite/jump-landing-02.png" type="Texture" id=23]
+[ext_resource path="res://assets/Player/Sprite/dead-01.png" type="Texture" id=24]
+[ext_resource path="res://assets/Player/Sprite/jump-02.png" type="Texture" id=25]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30.6327, 64 )
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 23 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "jump_landing",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 17 ), ExtResource( 21 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "run",
+"speed": 20.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 56 )
+extents = Vector2( 25.363, 64 )
 
 [sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 56 )
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24, 56 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -25,36 +75,48 @@ wall_slide_velocity = 250
 wall_jump_velocity_y = 150
 wall_jump_velocity_x = 250
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 16.3579, -4 )
+scale = Vector2( 4.25, 4.25 )
+frames = SubResource( 1 )
+animation = "idle"
+frame = 1
+playing = true
 
-[node name="Idle" type="Sprite" parent="CollisionShape2D"]
+[node name="Idle" type="Sprite" parent="."]
+visible = false
 position = Vector2( 54.5408, -5.28364 )
 scale = Vector2( 0.315603, 0.31383 )
 texture = ExtResource( 4 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
 [node name="RightArea2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightArea2D"]
 position = Vector2( 32, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="LeftArea2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea2D"]
 position = Vector2( -32, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="MiddleArea2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleArea2D"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Shield" type="Sprite" parent="."]
 visible = false
