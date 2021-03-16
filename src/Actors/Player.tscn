@@ -16,9 +16,14 @@ extents = Vector2( 24, 56 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 10
 script = ExtResource( 1 )
-wall_slide_velocity = 500
-wall_jump_velocity_y = 300
-wall_jump_velocity_x = 500
+gravity = 250
+running_speed = 8000
+jumping_speed = 280
+dash_speed = 6000
+stomp_velocity = 300
+wall_slide_velocity = 250
+wall_jump_velocity_y = 150
+wall_jump_velocity_x = 250
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
