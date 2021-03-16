@@ -139,7 +139,10 @@ func calculate_velocity(velocity, delta):
 		out.y = -jumping_speed
 	out = calculate_wall_interaction(out, input_direction, delta)
 	
-	setAnimation(out, input_direction);
+	if (health != 0):
+		setAnimation(out, input_direction)
+	else:
+		return Vector2(0,0)
 	
 	return out
 
@@ -233,13 +236,17 @@ func setAnimation(velocity, input_direction):
 	if is_on_floor():
 		if input_direction.x == 0:
 			$AnimatedSprite.animation = "idle"
+			$AnimatedSprite.speed_scale = 1
 		else:
 			$AnimatedSprite.animation = "run"
+			$AnimatedSprite.speed_scale = abs(velocity.x/130)
 	else:
 		if velocity.y < 0:
 			$AnimatedSprite.animation = "jump"
+			$AnimatedSprite.speed_scale = 1
 		elif velocity.y > 0:
 			$AnimatedSprite.animation = "jump_landing"
+			$AnimatedSprite.speed_scale = 1
 		
 
 func _change_world(flag: bool):
@@ -282,10 +289,10 @@ func damage(value):
 		die()
 		
 func die():
+	$AnimatedSprite.animation = "dead"
 	health = 0
 	GUI.setHealthGauge(health)
 	get_parent().playerDied()
-	queue_free()
 	
 func win():
 	get_parent().playerWon()
@@ -302,3 +309,8 @@ func add_CursorAmmo(value):
 func add_VSAmmo(value):
 	VSAmmo += value
 	GUI.setVSAmmo(VSAmmo)
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == "dead":
+		queue_free()
