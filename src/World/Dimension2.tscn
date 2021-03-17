@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://World/World_Tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://World/Dimension2.gd" type="Script" id=2]
@@ -9,8 +9,14 @@
 [ext_resource path="res://World/PowerUps/Coffee2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/PowerUps/Stackoverflow2.tscn" type="PackedScene" id=9]
 
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 0, -128, 0, 0, 448, 0, 544, 48, 800, 48, 816, 64, 816, 320, 1296, 320, 1296, -32, 1264, -64, 1232, -64, 1168, -96, 1152, -112, 1152, -144, 1168, -160, 1648, -160, 1664, -144, 1664, 368, 2784, 368, 2784, 112, 2720, 80, 2560, 80, 2544, 64, 2544, -64, 2560, -80, 2816, -80, 3168, 272, 3840, 272, 3840, 256, 4304, 256, 4304, 48, 4256, 0, 4304, 0, 4304, -272, 4256, -320, 4304, -320, 4304, -592, 4256, -640, 4304, -640, 4304, -784, 4336, -816, 4832, -816, 4832, -800, 5232, -800, 5200, -776, 5200, -336, 5776, -336, 5744, -312, 624, 2576, -1416, -1136, 3912, -1864, 3680, -1456, 4448, -1456, 4544, -1408, 4544, -1392, 4448, -1344, 4448, -1056, 4784, -1056, 4816, -1040, 4832, -1024, 4832, -944, 4816, -928, 4800, -928, 4752, -976, 3952, -976, 3920, -944, 3920, -816, 3952, -784, 3952, -528, 3936, -512, 2976, -512, 2944, -480, 2944, -352, 2928, -336, 2896, -336, 2832, -400, 1520, -400, 1456, -432, 1264, -432, 1200, -464, 400, -464, 368, -432, 368, -320, 416, -320, 368, -272, 368, -176, 352, -160, 32, -160 )
+
 [node name="Dimension2" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )
 
 [node name="Background" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -51,6 +57,7 @@ position = Vector2( 768, -64 )
 position = Vector2( 960, -128 )
 
 [node name="Platform4" parent="Platforms" instance=ExtResource( 5 )]
+light_mask = -2147483647
 position = Vector2( 1856, 0 )
 
 [node name="Platform5" parent="Platforms" instance=ExtResource( 5 )]

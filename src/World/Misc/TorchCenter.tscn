@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/WorldElements/Animated/torch-C-03.png" type="Texture" id=1]
 [ext_resource path="res://assets/WorldElements/Animated/torch-C-02.png" type="Texture" id=2]
 [ext_resource path="res://assets/WorldElements/Animated/torch-C-01.png" type="Texture" id=3]
 [ext_resource path="res://assets/WorldElements/Animated/torch-C-04.png" type="Texture" id=4]
+[ext_resource path="res://assets/WorldElements/light.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -17,3 +18,10 @@ animations = [ {
 frames = SubResource( 1 )
 frame = 1
 playing = true
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 5 )
+texture_scale = 0.25
+color = Color( 1, 1, 0.784314, 1 )
+shadow_enabled = true
+shadow_gradient_length = 2.0

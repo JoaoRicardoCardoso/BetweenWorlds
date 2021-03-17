@@ -613,6 +613,20 @@
 21/shape_one_way_margin = 0.0
 21/shapes = [  ]
 21/z_index = 0
+22/name = "other_and_decorative.png 22"
+22/texture = ExtResource( 2 )
+22/tex_offset = Vector2( 0, 0 )
+22/modulate = Color( 1, 1, 1, 1 )
+22/region = Rect2( 224, 16, 16, 48 )
+22/tile_mode = 0
+22/occluder_offset = Vector2( 0, 0 )
+22/navigation_offset = Vector2( 0, 0 )
+22/shape_offset = Vector2( 0, 0 )
+22/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+22/shape_one_way = false
+22/shape_one_way_margin = 0.0
+22/shapes = [  ]
+22/z_index = 0
 
 [node name="Background" type="TileMap"]
 tile_set = SubResource( 1 )
@@ -659,11 +673,9 @@ scale = Vector2( 2, 2 )
 
 [node name="Skybox10" parent="Skyboxes" instance=ExtResource( 4 )]
 position = Vector2( 15200, -80 )
-scale = Vector2( 1, 1 )
 
 [node name="Skybox11" parent="Skyboxes" instance=ExtResource( 4 )]
 position = Vector2( 16000, 480 )
-scale = Vector2( 1, 1 )
 
 [node name="Skybox15" parent="Skyboxes" instance=ExtResource( 4 )]
 position = Vector2( 24600, -6160 )
@@ -672,136 +684,143 @@ scale = Vector2( 30, 30 )
 [node name="Decorations" type="Node2D" parent="."]
 
 [node name="DecorationsTile" type="TileMap" parent="Decorations"]
-scale = Vector2( 1, 1 )
 tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -4390633, 536870917, 0, -4390632, 536870920, 0, -4390629, 536870923, 0, -4390627, 536870924, 0, -4390621, 536870923, 0, -4390620, 536870917, 0, -4390618, 536870920, 0, -3866339, 536870912, 0, -3800832, 536870932, 0, -3800827, 536870931, 0, -3800814, 536870929, 0, -3800796, 536870926, 0, -3800795, 536870926, 0, -3800791, 536870925, 0, -3800790, 536870925, 0, -3604195, 536870914, 0, -2096966, 7, 0, -2096963, 9, 0, -2096960, 9, 0, -2096955, 9, 0, -2096952, 8, 0, -2096949, 9, 0, -2096945, 8, 0, -2096943, 8, 0, -2096939, 9, 0, -2096935, 8, 0, -2096931, 9, 0, -2096928, 9, 0, -2096926, 9, 0, -2096921, 8, 0, -2096919, 9, 0, -2096914, 9, 0, -1900518, 9, 0, -1900513, 8, 0, -1900507, 9, 0, -1900505, 8, 0, -1900500, 8, 0, -1900495, 9, 0, -1900484, 8, 0, -1900483, 8, 0, -1900480, 9, 0, -1900471, 9, 0, -1769383, 9, 0, -1769381, 8, 0, -1572768, 17, 0, -1376170, 19, 0, -1376011, 536870930, 0, -1244989, 12, 0, -1244982, 12, 0, -1244977, 536870924, 0, -1244971, 5, 0, -1244970, 8, 0, -1244960, 536870924, 0, -1244959, 12, 0, -1244958, 536870924, 0, -1113942, 536870929, 0, -917418, 21, 0, -851882, 4, 0, -851881, 13, 0, -851806, 536870913, 0, -851803, 536870913, 0, -851802, 9, 0, -786344, 11, 0, -720815, 5, 0, -720811, 11, 0, -720808, 11, 0, -720806, 12, 0, -720802, 5, 0, -655355, 9, 0, -655342, 9, 0, -655199, 21, 0, -589663, 11, 0, -589662, 536870913, 0, -589661, 9, 0, -589659, 536870913, 0, -589658, 14, 0, -589657, 14, 0, -589656, 536870912, 0, -524281, 17, 0, -524128, -2147483637, 0, -524127, 536870923, 0, -458592, -1610612725, 0, -458591, 11, 0, -458507, 536870930, 0, -393056, 11, 0, -393055, 536870923, 0, -393046, 12, 0, -262144, 0, 0, -262142, 2, 0, -261955, 536870930, 0, -131066, 11, 0, -65531, 12, 0, -65530, 11, 0, -65529, 11, 0, -65525, 5, 0, 327878, 18, 0, 458977, 536870933, 0, 458997, 536870930, 0, 524512, 536870913, 0, 655569, 536870913, 0, 786656, 536870913, 0, 786699, 21, 0, 852235, 4, 0, 852236, 8, 0, 917713, 536870917, 0, 917770, 536870924, 0, 983161, 2, 0, 983248, 536870933, 0, 983249, 536870917, 0, 983281, 12, 0, 983289, 536870917, 0, 983290, 536870922, 0, 983305, 536870923, 0, 983306, 11, 0, 1048680, 21, 0, 1048784, 536870923, 0, 1048785, 536870917, 0, 1048792, 536870924, 0, 1048800, 536870917, 0, 1114216, 4, 0, 1114217, 8, 0, 1114229, 19, 0, 1114234, 13, 0, 1114243, 20, 0, 1114257, 536870931, 0, 1114271, 536870932, 0, 1245298, 11, 0, 1245305, 6, 0, 1245354, 536870914, 0, 1310824, 4, 0, 1310833, 4, 0, 1310834, 13, 0, 1310875, 4, 0, 1310887, 536870933, 0, 1310889, 536870924, 0, 1376423, 3, 0, 1376424, 20, 0 )
+tile_data = PoolIntArray( -4390633, 536870917, 0, -4390632, 536870920, 0, -4390629, 536870923, 0, -4390627, 536870924, 0, -4390621, 536870923, 0, -4390620, 536870917, 0, -4390618, 536870920, 0, -3866339, 536870912, 0, -3800832, 536870932, 0, -3800827, 536870931, 0, -3800814, 536870929, 0, -3800796, 536870926, 0, -3800795, 536870926, 0, -3800791, 536870925, 0, -3800790, 536870925, 0, -3604195, 536870914, 0, -2096966, 7, 0, -2096963, 9, 0, -2096960, 9, 0, -2096955, 9, 0, -2096952, 8, 0, -2096949, 9, 0, -2096945, 8, 0, -2096943, 8, 0, -2096939, 9, 0, -2096935, 8, 0, -2096931, 9, 0, -2096928, 9, 0, -2096926, 9, 0, -2096921, 8, 0, -2096919, 9, 0, -2096914, 9, 0, -1900518, 9, 0, -1900513, 8, 0, -1900507, 9, 0, -1900505, 8, 0, -1900500, 8, 0, -1900495, 9, 0, -1900484, 8, 0, -1900483, 8, 0, -1900480, 9, 0, -1900471, 9, 0, -1769383, 9, 0, -1769381, 8, 0, -1572768, 17, 0, -1376170, 19, 0, -1376011, 536870930, 0, -1244989, 12, 0, -1244982, 12, 0, -1244977, 536870924, 0, -1244971, 5, 0, -1244970, 8, 0, -1244960, 536870924, 0, -1244959, 12, 0, -1244958, 536870924, 0, -1113942, 536870929, 0, -917418, 21, 0, -851882, 4, 0, -851881, 13, 0, -851806, 536870913, 0, -851803, 536870913, 0, -851802, 9, 0, -786344, 11, 0, -720815, 5, 0, -720811, 11, 0, -720808, 11, 0, -720806, 12, 0, -720802, 5, 0, -655355, 9, 0, -655342, 9, 0, -655199, 21, 0, -589662, 536870913, 0, -589661, 9, 0, -589659, 536870913, 0, -589658, 14, 0, -589657, 14, 0, -589656, 536870912, 0, -524281, 17, 0, -458591, 11, 0, -458507, 536870930, 0, -393056, 11, 0, -393055, 536870923, 0, -393046, 12, 0, -262144, 0, 0, -262142, 2, 0, -261955, 536870930, 0, -131066, 11, 0, -65531, 12, 0, -65530, 11, 0, -65529, 11, 0, -65525, 5, 0, 131296, 22, 0, 327878, 18, 0, 458977, 536870933, 0, 458997, 536870930, 0, 524512, 536870913, 0, 655569, 536870913, 0, 786656, 536870913, 0, 786699, 21, 0, 852235, 4, 0, 852236, 8, 0, 917713, 536870917, 0, 917770, 536870924, 0, 983161, 2, 0, 983248, 536870933, 0, 983249, 536870917, 0, 983281, 12, 0, 983289, 536870917, 0, 983290, 536870922, 0, 983305, 536870923, 0, 983306, 11, 0, 1048680, 21, 0, 1048784, 536870923, 0, 1048785, 536870917, 0, 1048792, 536870924, 0, 1048800, 536870917, 0, 1114216, 4, 0, 1114217, 8, 0, 1114229, 19, 0, 1114234, 13, 0, 1114243, 20, 0, 1114257, 536870931, 0, 1114271, 536870932, 0, 1245298, 11, 0, 1245305, 6, 0, 1245354, 536870914, 0, 1310824, 4, 0, 1310833, 4, 0, 1310834, 13, 0, 1310875, 4, 0, 1310887, 536870933, 0, 1310889, 536870924, 0, 1376423, 3, 0, 1376424, 20, 0 )
 
-[node name="TorchRight" parent="Decorations" instance=ExtResource( 6 )]
+[node name="Lights" type="Node2D" parent="Decorations"]
+
+[node name="TorchRight" parent="Decorations/Lights" instance=ExtResource( 6 )]
 position = Vector2( 8, -104 )
-frame = 1
+frame = 2
 
-[node name="TorchCenter" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 304, -112 )
 frame = 2
 
-[node name="TorchCenter2" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter2" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 536, -32 )
-frame = 0
+frame = 2
 
-[node name="TorchCenter3" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter3" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 928, -32 )
 frame = 3
 
-[node name="TorchCenter4" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter4" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 536, -272 )
 frame = 3
 
-[node name="TorchCenter5" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter5" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 920, -273.6 )
 frame = 2
 
-[node name="TorchLeft" parent="Decorations" instance=ExtResource( 7 )]
+[node name="TorchLeft" parent="Decorations/Lights" instance=ExtResource( 7 )]
 position = Vector2( 1288, 48 )
+frame = 3
 
-[node name="Light" parent="Decorations" instance=ExtResource( 8 )]
+[node name="Light" parent="Decorations/Lights" instance=ExtResource( 8 )]
 position = Vector2( 1944, -376 )
 
-[node name="Light2" parent="Decorations" instance=ExtResource( 8 )]
+[node name="Light2" parent="Decorations/Lights" instance=ExtResource( 8 )]
 position = Vector2( 2168, -376 )
 
-[node name="Light3" parent="Decorations" instance=ExtResource( 8 )]
+[node name="Light3" parent="Decorations/Lights" instance=ExtResource( 8 )]
 position = Vector2( 2392, -376 )
 
-[node name="Light4" parent="Decorations" instance=ExtResource( 8 )]
+[node name="Light4" parent="Decorations/Lights" instance=ExtResource( 8 )]
 position = Vector2( 2616, -376 )
-frame = 3
 
-[node name="Light5" parent="Decorations" instance=ExtResource( 8 )]
+[node name="Light5" parent="Decorations/Lights" instance=ExtResource( 8 )]
 position = Vector2( 3400, 56 )
-frame = 3
 
-[node name="Light6" parent="Decorations" instance=ExtResource( 8 )]
-position = Vector2( 3584, 56 )
-
-[node name="Light7" parent="Decorations" instance=ExtResource( 8 )]
+[node name="Light7" parent="Decorations/Lights" instance=ExtResource( 8 )]
 position = Vector2( 3752, 56 )
 
-[node name="TorchRight2" parent="Decorations" instance=ExtResource( 6 )]
+[node name="TorchRight2" parent="Decorations/Lights" instance=ExtResource( 6 )]
 position = Vector2( 2952, -424 )
-frame = 1
+frame = 2
 
-[node name="TorchCenter6" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter6" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 3416, -320 )
+frame = 3
 
-[node name="TorchCenter7" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter7" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 3848, -273.6 )
 frame = 3
 
-[node name="TorchLeft2" parent="Decorations" instance=ExtResource( 7 )]
+[node name="TorchLeft2" parent="Decorations/Lights" instance=ExtResource( 7 )]
 position = Vector2( 4296, 64 )
+frame = 3
 
-[node name="TorchLeft3" parent="Decorations" instance=ExtResource( 7 )]
+[node name="TorchLeft3" parent="Decorations/Lights" instance=ExtResource( 7 )]
 position = Vector2( 4296, -256 )
 frame = 1
 
-[node name="TorchLeft4" parent="Decorations" instance=ExtResource( 7 )]
+[node name="TorchLeft4" parent="Decorations/Lights" instance=ExtResource( 7 )]
 position = Vector2( 4296, -576 )
-frame = 2
-
-[node name="TorchRight3" parent="Decorations" instance=ExtResource( 6 )]
-position = Vector2( 3928, -904 )
 frame = 1
 
-[node name="TorchCenter8" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchRight3" parent="Decorations/Lights" instance=ExtResource( 6 )]
+position = Vector2( 3928, -904 )
+frame = 2
+
+[node name="TorchRight4" parent="Decorations/Lights" instance=ExtResource( 6 )]
+position = Vector2( 3960, -576 )
+frame = 2
+
+[node name="TorchCenter8" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 4576, -880 )
+frame = 3
 
-[node name="TorchCenter9" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter9" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 4840, -880 )
-frame = 0
+frame = 2
 
-[node name="TorchCenter10" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter10" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 5096, -880 )
+frame = 3
 
-[node name="TorchCenter11" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter11" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 4968, -880 )
-frame = 0
+frame = 2
 
-[node name="TorchCenter12" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter12" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 5224, -880 )
+frame = 3
 
-[node name="TorchCenter13" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter13" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 4520, -1136 )
 frame = 2
 
-[node name="TorchCenter14" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter14" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 4648, -1136 )
 frame = 2
 
-[node name="TorchCenter15" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter15" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 4408, -1536 )
+frame = 3
 
-[node name="TorchCenter16" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter16" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 4312, -1536 )
 frame = 3
 
-[node name="TorchCenter17" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter17" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 4184, -1536 )
 frame = 3
 
-[node name="TorchCenter18" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter18" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 4056, -1536 )
 frame = 2
 
-[node name="TorchCenter19" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter19" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 3960, -1536 )
-frame = 0
+frame = 2
 
-[node name="TorchCenter20" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter20" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 1816, 304 )
 frame = 3
 
-[node name="TorchCenter21" parent="Decorations" instance=ExtResource( 5 )]
+[node name="TorchCenter21" parent="Decorations/Lights" instance=ExtResource( 5 )]
 position = Vector2( 2488, 304 )
-frame = 0
+frame = 2

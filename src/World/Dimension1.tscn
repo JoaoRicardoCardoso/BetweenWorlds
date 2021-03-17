@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://World/Hazards/Serial Port Hazard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/World_Tiles.tres" type="TileSet" id=2]
@@ -8,8 +8,26 @@
 [ext_resource path="res://World/Background.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World/Hazards/Pitfall.tscn" type="PackedScene" id=11]
 
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 448, 0, 0, 0, 0, -128, 32, -160, 352, -160, 368, -176, 368, -272, 416, -320, 368, -320, 368, -432, 400, -464, 1200, -464, 1264, -432, 1456, -432, 1520, -400, 2832, -400, 3264, 32, 3936, 32, 3952, 16, 3952, -752, 4272, -752, 4304, -720, 4304, -640, 4256, -640, 4304, -600, 4304, -320, 4256, -320, 4304, -280, 4304, 0, 4256, 0, 4304, 40, 4304, 256, 3840, 256, 3840, 272, 3168, 272, 2816, -80, 2560, -80, 2544, -64, 2544, 64, 2560, 80, 2720, 80, 2784, 112, 2784, 368, 1664, 368, 1664, -144, 1648, -160, 1168, -160, 1152, -144, 1152, -112, 1168, -96, 1232, -64, 1264, -64, 1296, -32, 1296, 320, 816, 320, 816, 64, 800, 48, 544, 48 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( 3952, -976, 4752, -976, 4800, -928, 4816, -928, 4832, -944, 4832, -1024, 4816, -1040, 4784, -1056, 4448, -1056, 4448, -1344, 4544, -1392, 4544, -1408, 4448, -1456, 3904, -1456, 3952, -976 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( 3952, -976, 3920, -944, 3920, -816, 4832, -816, 4832, -800, 5232, -800, 5200, -776, 5200, -336, 5776, -336, 5744, -304, 4536, -304, 4536, -792, 3880, -792, 3888, -1024 )
+
 [node name="Dimension1" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="LightOccluderInside" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )
+
+[node name="LightOccluderOutside1" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )
+
+[node name="LightOccluderOutside2" type="LightOccluder2D" parent="."]
+occluder = SubResource( 3 )
 
 [node name="Background" parent="." instance=ExtResource( 6 )]
 
