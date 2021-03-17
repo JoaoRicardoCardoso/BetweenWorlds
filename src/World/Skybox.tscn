@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/Tiles/Background/05 background.png" type="Texture" id=1]
+[ext_resource path="res://assets/Tiles/Background/01 background.png" type="Texture" id=2]
+[ext_resource path="res://assets/Tiles/Background/04 background.png" type="Texture" id=3]
+[ext_resource path="res://assets/Tiles/Background/02 background.png" type="Texture" id=4]
+[ext_resource path="res://assets/Tiles/Background/03 background B.png" type="Texture" id=5]
+
+[node name="Skybox" type="Node2D"]
+
+[node name="01 background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="02 background" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="03 background B" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="04 background" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="05 background" type="Sprite" parent="."]
+texture = ExtResource( 1 )

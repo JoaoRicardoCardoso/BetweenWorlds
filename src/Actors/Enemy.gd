@@ -43,10 +43,10 @@ func handle_drops():
 #func _process(delta):
 #	pass
 
-
 func _on_Area2D_area_entered(area):
 	orientation.x *= -1
 
 
 func _on_Area2D_body_entered(body):
-	body.damage(damage)
+	if body is Player:
+		body.damage(damage)

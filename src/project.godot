@@ -112,7 +112,7 @@ reset={
 2d_physics/layer_9="Enemy Dimension 2"
 2d_physics/layer_10="Hazards Dimension 1"
 2d_physics/layer_11="Player Dimension 2"
-2d_physics/layer_12="Enemy Guide Dimension 1"
+2d_physics/layer_12="Enemy Barrier Dimension 1"
 2d_physics/layer_13="Enemy Barrier Dimension 2"
 2d_physics/layer_20="Hazards Dimension 2"
 

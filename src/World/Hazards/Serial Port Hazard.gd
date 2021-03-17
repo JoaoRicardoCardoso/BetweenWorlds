@@ -35,7 +35,7 @@ func instantiate():
 	var h_instance = DataHazard.instance()
 	h_instance.init(direction, instance_speed, is_in_first_dimension) 
 	add_child(h_instance)
-	h_instance.global_position = $Instantiator.global_position
+	h_instance.global_position = $Instantiator.global_position + $Instantiator.transform.get_scale() * Vector2(0,50)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

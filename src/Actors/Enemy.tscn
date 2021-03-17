@@ -1,32 +1,26 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Actors/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://assets/Enemy/Enemy.png" type="Texture" id=2]
-[ext_resource path="res://assets/Enemy/scheme.svg" type="Texture" id=3]
+[ext_resource path="res://assets/Enemy/cpp.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 56, 64 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 64.0
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 64, 64 )
+[sub_resource type="CircleShape2D" id=2]
+radius = 80.0
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 128
-collision_mask = 11
+collision_mask = 2059
 script = ExtResource( 1 )
 speed = 10000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="EnemySprite" type="Sprite" parent="CollisionShape2D"]
-position = Vector2( -1.52588e-05, 3.8147e-06 )
-scale = Vector2( 0.14447, 0.144307 )
-texture = ExtResource( 2 )
-
-[node name="scheme" type="Sprite" parent="CollisionShape2D"]
-position = Vector2( 0, 0.500004 )
-scale = Vector2( 0.229032, 0.230645 )
+[node name="cpp" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( -1.90735e-06, 0 )
+scale = Vector2( 0.375954, 0.378602 )
 texture = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]

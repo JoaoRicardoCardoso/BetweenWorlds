@@ -1,7 +1,7 @@
 extends Area2D
 class_name Hazard
 
-export var damage:float = 1
+export var damage:float = 3
 var current_velocity = Vector2(0,0)
 
 # Declare member variables here. Examples:

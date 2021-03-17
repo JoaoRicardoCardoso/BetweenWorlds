@@ -35,10 +35,8 @@ func _process(delta):
 	shot_counter -= delta
 	if shot_counter <= 0:
 		var player = get_tree().current_scene.get_node_or_null("Player")
-		#var player = get_parent().get_parent().get_node_or_null("Player")
 		if player != null:
 			var player_direction = player.global_position - global_position
-			print(player_direction)
 			if player_direction.length() < aggro_range:
 				player_direction = player_direction.normalized()
 				shoot(player_direction)

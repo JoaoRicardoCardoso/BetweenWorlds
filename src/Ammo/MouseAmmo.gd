@@ -1,4 +1,4 @@
-extends "res://Ammo/Collectable.gd"
+extends "res://Ammo/Ammo.gd"
 
 
 # Declare member variables here. Examples:

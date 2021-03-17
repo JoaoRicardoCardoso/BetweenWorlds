@@ -219,9 +219,9 @@ func _process(delta):
 #########################################################
 #Changing colision mask if appropriate
 func _input(event):
-	if event.is_action_pressed("ui_shoot"):
+	if event.is_action_pressed("ui_shoot") and health!= 0:
 		shoot()
-	if event.is_action_pressed("change_world"):
+	if event.is_action_pressed("change_world") and health != 0:
 		if (not changed_world and not energy == 0) or changed_world:
 			if change_world_counter == change_world_cooldown:
 				_change_world(not changed_world)
@@ -252,8 +252,8 @@ func setAnimation(velocity, input_direction):
 func _change_world(flag: bool):
 	if flag != changed_world:
 
-		get_parent().get_node_or_null("Dimension1").change_state()
-		get_parent().get_node_or_null("Dimension2").change_state()
+		get_tree().current_scene.get_node_or_null("Dimension1").change_state()
+		get_tree().current_scene.get_node_or_null("Dimension2").change_state()
 
 		if changed_world:
 			collision_layer = 1
@@ -289,13 +289,15 @@ func damage(value):
 		die()
 		
 func die():
+	collision_mask = 0
+	collision_layer = 0
 	$AnimatedSprite.animation = "dead"
 	health = 0
 	GUI.setHealthGauge(health)
-	get_parent().playerDied()
+	get_tree().current_scene.playerDied()
 	
 func win():
-	get_parent().playerWon()
+	get_tree().current_scene.playerWon()
 	queue_free()
 
 func _on_MiddleArea2D_body_entered(body):
