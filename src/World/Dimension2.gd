@@ -9,5 +9,5 @@ func change_state():
 		modulate.a = 1
 		set_z_index(-1)
 	else:
-		modulate.a = 0.3
+		modulate.a = 0
 		set_z_index(0)

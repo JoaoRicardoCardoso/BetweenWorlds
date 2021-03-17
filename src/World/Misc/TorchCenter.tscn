@@ -16,12 +16,11 @@ animations = [ {
 
 [node name="TorchCenter" type="AnimatedSprite"]
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 5 )
-texture_scale = 0.25
+texture_scale = 0.5
 color = Color( 1, 1, 0.784314, 1 )
 shadow_enabled = true
 shadow_gradient_length = 2.0

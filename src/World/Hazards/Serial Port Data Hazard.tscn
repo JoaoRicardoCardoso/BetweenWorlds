@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://assets/WorldElements/light.png" type="Texture" id=1]
 [ext_resource path="res://World/Hazards/SerialPortDataHazard.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -33,5 +34,9 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 1 )
+energy = 0.75
 [connection signal="body_entered" from="." to="." method="_on_Hazard_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Hazard_body_exited"]

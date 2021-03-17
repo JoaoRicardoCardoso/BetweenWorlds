@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://World/Hazards/Serial Port Hazard.gd" type="Script" id=1]
 [ext_resource path="res://assets/Hazards/SerialPort.png" type="Texture" id=2]
 
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( 128, 63.9998, 128, -64.0002, -128, -63.9998, -128, 64.0002 )
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 5 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( -128, -64, 128, -64, 128, 64, -128, 64 )
 
 [node name="Serial Port Hazard" type="Node2D"]
 script = ExtResource( 1 )
@@ -15,11 +21,14 @@ instance_frequency = 12.614
 instance_speed = 100
 
 [node name="Instantiator" type="Sprite" parent="."]
-position = Vector2( -4.54747e-13, -32 )
+position = Vector2( 4.54747e-13, -32 )
 rotation = -3.14159
-scale = Vector2( 0.3125, 0.5 )
+scale = Vector2( 0.375, 0.5 )
 z_index = 1
 texture = ExtResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Instantiator"]
+occluder = SubResource( 2 )
 
 [node name="Destructor" type="Area2D" parent="."]
 position = Vector2( 0, 16 )
@@ -31,8 +40,11 @@ collision_mask = 0
 position = Vector2( 0, 13 )
 shape = SubResource( 1 )
 
-[node name="Player" type="Sprite" parent="Destructor/CollisionShape2D"]
-position = Vector2( 0, 3 )
-scale = Vector2( 0.3125, 0.5 )
+[node name="Desctructor" type="Sprite" parent="Destructor/CollisionShape2D"]
+position = Vector2( -4.76837e-07, 3 )
+scale = Vector2( 0.375, 0.5 )
 texture = ExtResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Destructor/CollisionShape2D/Desctructor"]
+occluder = SubResource( 3 )
 [connection signal="area_entered" from="Destructor" to="." method="_on_Destructor_area_entered"]

@@ -16,6 +16,7 @@ animations = [ {
 
 [node name="Light" type="AnimatedSprite"]
 frames = SubResource( 1 )
+frame = 3
 playing = true
 
 [node name="Light2D" type="Light2D" parent="."]

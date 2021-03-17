@@ -48,7 +48,12 @@ scale = Vector2( 50, 1 )
 
 [node name="Serial Port Hazard" parent="Hazards" instance=ExtResource( 1 )]
 position = Vector2( 7952, -1488 )
-hazard_length = 1000
+hazard_length = 984
+cooldown = 6
+
+[node name="Serial Port Hazard2" parent="Hazards" instance=ExtResource( 1 )]
+position = Vector2( 8560, -1488 )
+hazard_length = 984
 cooldown = 6
 
 [node name="Pitfall2" parent="Hazards" instance=ExtResource( 11 )]

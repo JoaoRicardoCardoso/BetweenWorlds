@@ -14,13 +14,13 @@ script = ExtResource( 4 )
 z_index = -1
 
 [node name="Dimension2" parent="." instance=ExtResource( 2 )]
-modulate = Color( 1, 1, 1, 0.301961 )
+modulate = Color( 1, 1, 1, 0 )
 light_mask = -2147483647
 
 [node name="GUI" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 152, -32 )
+position = Vector2( 160, -32 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Bullets" type="Node2D" parent="."]

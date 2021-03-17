@@ -16,6 +16,7 @@ animations = [ {
 
 [node name="TorchRight" type="AnimatedSprite"]
 frames = SubResource( 1 )
+frame = 2
 playing = true
 
 [node name="Light2D" type="Light2D" parent="."]
