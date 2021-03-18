@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Actors/RangedEnemy.gd"
 }, {
+"base": "Object",
+"class": "RoomNode",
+"language": "GDScript",
+"path": "res://World/RoomNode.gd"
+}, {
 "base": "Hazard",
 "class": "SerialPortDataHazard",
 "language": "GDScript",
@@ -56,6 +61,7 @@ _global_script_class_icons={
 "LinearBullet": "",
 "Player": "",
 "RangedEnemy": "",
+"RoomNode": "",
 "SerialPortDataHazard": "",
 "VSCodeBullet": ""
 }
