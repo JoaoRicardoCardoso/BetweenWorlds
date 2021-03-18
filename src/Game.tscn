@@ -20,6 +20,10 @@ modulate = Color( 1, 1, 1, 0 )
 light_mask = -2147483647
 
 [node name="GUI" parent="." instance=ExtResource( 6 )]
+margin_left = 208.0
+margin_top = -88.0
+margin_right = 208.0
+margin_bottom = -88.0
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 280, -32 )
