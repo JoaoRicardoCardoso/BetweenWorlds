@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Player/Sprite/idle-04.png" type="Texture" id=2]
 [ext_resource path="res://assets/Player/shield.png" type="Texture" id=3]
+[ext_resource path="res://assets/sound/sfx/stairs.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/Player/Sprite/idle-02.png" type="Texture" id=5]
 [ext_resource path="res://assets/Player/Sprite/idle-05.png" type="Texture" id=6]
 [ext_resource path="res://assets/Player/Sprite/idle-06.png" type="Texture" id=7]
@@ -32,11 +33,6 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "run",
-"speed": 20.0
-}, {
 "frames": [ ExtResource( 19 ), ExtResource( 23 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "jump_landing",
@@ -51,6 +47,11 @@ animations = [ {
 "loop": true,
 "name": "jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "run",
+"speed": 20.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -79,6 +80,7 @@ position = Vector2( 16.3579, -4 )
 scale = Vector2( 4.25, 4.25 )
 frames = SubResource( 1 )
 animation = "idle"
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -112,6 +114,9 @@ visible = false
 position = Vector2( 4.87268e-06, 4.76837e-06 )
 scale = Vector2( 0.316547, 0.316547 )
 texture = ExtResource( 3 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="RightArea2D" to="." method="_on_right_Area2D_body_entered"]
 [connection signal="body_exited" from="RightArea2D" to="." method="_on_right_Area2D_body_exited"]

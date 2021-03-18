@@ -156,17 +156,23 @@ func _physics_process(delta):
 
 func shoot():
 	var b_instance = null
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.volume_db = -20
 	
 	if changed_world and VSAmmo > 0:
+		player.stream = load("res://assets/sound/sfx/sfx_throw.wav")
 		b_instance = Bullet2.instance()
 		VSAmmo -= 1
 		GUI.setVSAmmo(VSAmmo)
 	elif not changed_world and CursorAmmo > 0:
+		player.stream = load("res://assets/sound/sfx/mouse.wav")
 		b_instance = Bullet1.instance()
 		CursorAmmo -= 1
 		GUI.setCursorAmmo(CursorAmmo)
 	else:
 		return
+	player.play()
 		
 	var bullet_mask = collision_mask 
 	if changed_world:
@@ -237,16 +243,30 @@ func setAnimation(velocity, input_direction):
 		if input_direction.x == 0:
 			$AnimatedSprite.animation = "idle"
 			$AnimatedSprite.speed_scale = 1
+			$Sound.volume_db = max($Sound.volume_db - 0.2, -100)
+			if $Sound.volume_db < -50:
+				$Sound.stop()
 		else:
 			$AnimatedSprite.animation = "run"
 			$AnimatedSprite.speed_scale = abs(velocity.x/130)
+			$Sound.volume_db = -10
+			if !$Sound.playing:
+				$Sound.play(0.5)
+			if $Sound.get_playback_position() > 1.7:
+				$Sound.play(0.5)
 	else:
 		if velocity.y < 0:
 			$AnimatedSprite.animation = "jump"
 			$AnimatedSprite.speed_scale = 1
+			$Sound.volume_db = max($Sound.volume_db - 0.2, -100)
+			if $Sound.volume_db < -50:
+				$Sound.stop()
 		elif velocity.y > 0:
 			$AnimatedSprite.animation = "jump_landing"
 			$AnimatedSprite.speed_scale = 1
+			$Sound.volume_db = max($Sound.volume_db - 0.2, -100)
+			if $Sound.volume_db < -50:
+				$Sound.stop()
 		
 
 func _change_world(flag: bool):

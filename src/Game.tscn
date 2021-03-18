@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://World/Dimension1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Dimension2.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Game.gd" type="Script" id=4]
 [ext_resource path="res://World/Misc/End.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sound/dungeon_ambient_1.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/sound/wind1.wav" type="AudioStream" id=8]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
@@ -20,7 +22,7 @@ light_mask = -2147483647
 [node name="GUI" parent="." instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 160, -32 )
+position = Vector2( 280, -32 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Bullets" type="Node2D" parent="."]
@@ -30,3 +32,21 @@ scale = Vector2( 0.5, 0.5 )
 modulate = Color( 0.941176, 0.878431, 0.454902, 1 )
 position = Vector2( 5162.89, -847.484 )
 scale = Vector2( 0.5, 0.5 )
+
+[node name="Music" type="Node" parent="."]
+
+[node name="Ambient" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 7 )
+volume_db = -5.0
+autoplay = true
+
+[node name="Outside" type="Area2D" parent="Music"]
+
+[node name="Wind" type="AudioStreamPlayer" parent="Music/Outside"]
+stream = ExtResource( 8 )
+volume_db = -20.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Music/Outside"]
+polygon = PoolVector2Array( 4288, -1456, 3904, -1456, 3904, -1920, 6200, -1920, 6200, -336, 5200, -336, 5200, -800, 4288, -800 )
+[connection signal="body_entered" from="Music/Outside" to="." method="_on_Outside_body_entered"]
+[connection signal="body_exited" from="Music/Outside" to="." method="_on_Outside_body_exited"]
