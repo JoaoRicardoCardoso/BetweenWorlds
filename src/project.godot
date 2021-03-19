@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "RoomNode",
 "language": "GDScript",
-"path": "res://World/RoomNode.gd"
+"path": "res://World/Rooms/RoomNode.gd"
 }, {
 "base": "Hazard",
 "class": "SerialPortDataHazard",
