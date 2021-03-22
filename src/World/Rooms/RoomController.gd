@@ -56,8 +56,8 @@ func initialize():
 func _ready():
 	generate()
 	initialize()
-	print(room_nodes)
-	room_nodes[0].print_path()
+	#print(room_nodes)
+	#room_nodes[0].print_path()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
