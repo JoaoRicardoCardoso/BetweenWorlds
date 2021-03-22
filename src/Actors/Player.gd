@@ -31,7 +31,7 @@ var stomp_flag = false
 
 #Wall Slide variables
 export var wall_slide_velocity = 3000
-export var wall_jump_velocity_y = 800
+export var wall_jump_velocity_y = 300
 export var wall_jump_velocity_x = 300
 
 var wall_collisions_left = 0
@@ -104,6 +104,7 @@ func calculate_wall_interaction(velocity, input_direction, delta):
 		wall_jump_flag = false
 	
 	if Input.is_action_just_pressed("ui_jump") and not is_on_floor() and not wall_jump_flag and jump_flag:
+		print("JUMP")
 		if wall_collisions_left > 0 and wall_collisions_right == 0:
 			current_impulse = Vector2(wall_jump_velocity_x, -wall_jump_velocity_y)
 		
@@ -148,6 +149,11 @@ func calculate_velocity(velocity, delta):
 	out += current_impulse
 	current_impulse = Vector2(0,0)
 	
+	if (health != 0):
+		setAnimation(out, input_direction)
+	else:
+		return Vector2(0,0)
+	
 	return out
 
 ###########################################################
@@ -160,18 +166,24 @@ func _physics_process(delta):
 
 func shoot():
 	var b_instance = null
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.volume_db = -20
 	
 	if changed_world and VSAmmo > 0:
+		player.stream = load("res://assets/sound/sfx/sfx_throw.wav")
 		b_instance = Bullet2.instance()
 		VSAmmo -= 1
 		GUI.setVSAmmo(VSAmmo)
 	elif not changed_world and CursorAmmo > 0:
+		player.stream = load("res://assets/sound/sfx/mouse.wav")
 		b_instance = Bullet1.instance()
 		b_instance.rotation = orientation.angle() 
 		CursorAmmo -= 1
 		GUI.setCursorAmmo(CursorAmmo)
 	else:
 		return
+	player.play()
 		
 	var bullet_mask = collision_mask 
 	if changed_world:
@@ -179,12 +191,12 @@ func shoot():
 	else:
 		bullet_mask = bullet_mask | 128
 	b_instance.init(orientation, bullet_mask) #damage layer bit 5, ignore layer bit 0
-	owner.add_child(b_instance)
-	b_instance.position = position
+	get_tree().current_scene.get_node_or_null("Bullets").add_child(b_instance)
+	b_instance.global_position = global_position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GUI = get_parent().get_node_or_null("GUI")
+	GUI = get_tree().current_scene.get_node_or_null("GUI")
 	health = 100
 	max_health = 100
 	GUI.setCursorAmmo(CursorAmmo)
@@ -224,18 +236,56 @@ func _process(delta):
 #########################################################
 #Changing colision mask if appropriate
 func _input(event):
-	if event.is_action_pressed("ui_shoot"):
+	if event.is_action_pressed("ui_shoot") and health!= 0:
 		shoot()
-	if event.is_action_pressed("change_world"):
+	if event.is_action_pressed("change_world") and health != 0:
 		if (not changed_world and not energy == 0) or changed_world:
 			if change_world_counter == change_world_cooldown:
 				_change_world(not changed_world)
+				
+func setAnimation(velocity, input_direction):
+	if input_direction.x < 0:
+		$AnimatedSprite.flip_h = true
+		$AnimatedSprite.offset.x = -7.8
+	elif input_direction.x > 0:
+		$AnimatedSprite.flip_h = false
+		$AnimatedSprite.offset.x = 0
+	if is_on_floor():
+		if input_direction.x == 0:
+			$AnimatedSprite.animation = "idle"
+			$AnimatedSprite.speed_scale = 1
+			$Sound.volume_db = max($Sound.volume_db - 0.2, -100)
+			if $Sound.volume_db < -50:
+				$Sound.stop()
+		else:
+			$AnimatedSprite.animation = "run"
+			$AnimatedSprite.speed_scale = abs(velocity.x/130)
+			$Sound.volume_db = -10
+			if !$Sound.playing:
+				$Sound.play(0.5)
+			if $Sound.get_playback_position() > 1.7:
+				$Sound.play(0.5)
+	else:
+		if velocity.y < 0:
+			$AnimatedSprite.animation = "jump"
+			$AnimatedSprite.speed_scale = 1
+			$Sound.volume_db = max($Sound.volume_db - 0.2, -100)
+			if $Sound.volume_db < -50:
+				$Sound.stop()
+		elif velocity.y > 0:
+			$AnimatedSprite.animation = "jump_landing"
+			$AnimatedSprite.speed_scale = 1
+			$Sound.volume_db = max($Sound.volume_db - 0.2, -100)
+			if $Sound.volume_db < -50:
+				$Sound.stop()
+		
 
 func _change_world(flag: bool):
 	if flag != changed_world:
 
-		get_parent().get_node_or_null("Dimension1").change_state()
-		get_parent().get_node_or_null("Dimension2").change_state()
+		get_tree().current_scene.get_node_or_null("Dimension1").change_state()
+		get_tree().current_scene.get_node_or_null("Dimension2").change_state()
+		#get_tree().current_scene.get_node_or_null("Rooms").setDimension(changed_world)
 
 		if changed_world:
 			collision_layer = 1
@@ -271,13 +321,15 @@ func damage(value):
 		die()
 		
 func die():
+	collision_mask = 0
+	collision_layer = 0
+	$AnimatedSprite.animation = "dead"
 	health = 0
 	GUI.setHealthGauge(health)
-	get_parent().playerDied()
-	queue_free()
+	get_tree().current_scene.playerDied()
 	
 func win():
-	get_parent().playerWon()
+	get_tree().current_scene.playerWon()
 	queue_free()
 
 func _on_MiddleArea2D_body_entered(body):
@@ -291,3 +343,8 @@ func add_CursorAmmo(value):
 func add_VSAmmo(value):
 	VSAmmo += value
 	GUI.setVSAmmo(VSAmmo)
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == "dead":
+		queue_free()

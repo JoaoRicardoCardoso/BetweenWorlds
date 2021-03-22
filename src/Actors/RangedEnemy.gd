@@ -27,7 +27,7 @@ func shoot(direction):
 	var b_instance = Bullet.instance()
 	b_instance.init(direction, collision_mask)
 	owner.add_child(b_instance)
-	b_instance.position = position
+	b_instance.global_position = global_position
 	b_instance.rotation = direction.angle()
 	b_instance.damage = damage
 
@@ -35,9 +35,9 @@ func shoot(direction):
 func _process(delta):
 	shot_counter -= delta
 	if shot_counter <= 0:
-		var player = get_parent().get_parent().get_node_or_null("Player")
+		var player = get_tree().current_scene.get_node_or_null("Player")
 		if player != null:
-			var player_direction = player.position - position
+			var player_direction = player.global_position - global_position
 			if player_direction.length() < aggro_range and player.changed_world:
 				player_direction = player_direction.normalized()
 				shoot(player_direction)

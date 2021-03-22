@@ -31,7 +31,7 @@ func drop_item():
 	var drop_instance = Drop.instance()
 	owner.add_child(drop_instance)
 	drop_instance.init(get_collision_layer_bit(7))
-	drop_instance.position = position
+	drop_instance.global_position = global_position
 
 func handle_drops():
 	var rng = RandomNumberGenerator.new()
@@ -43,10 +43,10 @@ func handle_drops():
 #func _process(delta):
 #	pass
 
-
 func _on_Area2D_area_entered(area):
 	orientation.x *= -1
 
 
 func _on_Area2D_body_entered(body):
-	body.damage(damage)
+	if body is Player:
+		body.damage(damage)

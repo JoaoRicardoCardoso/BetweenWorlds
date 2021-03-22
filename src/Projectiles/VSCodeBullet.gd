@@ -29,7 +29,7 @@ func calculate_velocity(velocity, delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	timeout_counter = 4
 
 func _on_Bullet_body_entered(body):
 	if body is Actor:

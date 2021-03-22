@@ -1,10 +1,10 @@
 extends Control
 
 export var movement_margin = Vector2(50,50)
-onready var PowerBar = get_node("MarginContainer/VBoxContainer/PowerBar/Gauge")
-onready var HealthBar = get_node("MarginContainer/VBoxContainer/HealthBar/Gauge")
-onready var timeM = get_node("MarginContainer/VBoxContainer/HealthBar/Time/Background/TimeM")
-onready var timeS = get_node("MarginContainer/VBoxContainer/HealthBar/Time/Background/TimeS")
+onready var PowerBar = get_node_or_null("MarginContainer/VBoxContainer/PowerBar/Gauge")
+onready var HealthBar = get_node_or_null("MarginContainer/VBoxContainer/HealthBar/Gauge")
+onready var timeM = get_node_or_null("MarginContainer/VBoxContainer/HealthBar/Time/Background/TimeM")
+onready var timeS = get_node_or_null("MarginContainer/VBoxContainer/HealthBar/Time/Background/TimeS")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

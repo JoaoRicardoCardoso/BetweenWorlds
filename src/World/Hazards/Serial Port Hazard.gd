@@ -21,9 +21,9 @@ var next_instance = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var orientation = $Destructor.position - $Instantiator.position
+	var orientation = $Destructor.global_position - $Instantiator.global_position
 	direction = orientation.normalized()
-	$Destructor.position += direction * hazard_length
+	$Destructor.global_position += direction * hazard_length
 	counter = cooldown
 	
 	if is_in_first_dimension:
@@ -35,7 +35,7 @@ func instantiate():
 	var h_instance = DataHazard.instance()
 	h_instance.init(direction, instance_speed, is_in_first_dimension) 
 	add_child(h_instance)
-	h_instance.position = $Instantiator.position
+	h_instance.global_position = $Instantiator.global_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
