@@ -21,6 +21,10 @@ func playerDied():
 	print(Global.lives)
 	
 func playerWon():
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load("res://assets/sound/sfx/win.wav")
+	player.play()
 	playerWon = true
 	$Music/Ambient.stop()
 	
