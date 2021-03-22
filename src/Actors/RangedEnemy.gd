@@ -25,9 +25,10 @@ func _ready():
 
 func shoot(direction):
 	var b_instance = Bullet.instance()
-	b_instance.init(direction, collision_mask) #damage layer 0, ignore layer 5
+	b_instance.init(direction, collision_mask)
 	owner.add_child(b_instance)
 	b_instance.position = position
+	b_instance.rotation = direction.angle()
 	b_instance.damage = damage
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,7 +38,7 @@ func _process(delta):
 		var player = get_parent().get_parent().get_node_or_null("Player")
 		if player != null:
 			var player_direction = player.position - position
-			if player_direction.length() < aggro_range:
+			if player_direction.length() < aggro_range and player.changed_world:
 				player_direction = player_direction.normalized()
 				shoot(player_direction)
 				shot_counter = shot_cooldown

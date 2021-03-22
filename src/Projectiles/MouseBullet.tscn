@@ -16,6 +16,7 @@ shape = SubResource( 1 )
 
 [node name="mouse" type="Sprite" parent="CollisionShape2D"]
 position = Vector2( 2.38419e-07, 2.38419e-07 )
+rotation = 2.04553
 scale = Vector2( 0.0484375, 0.0484375 )
 texture = ExtResource( 2 )
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

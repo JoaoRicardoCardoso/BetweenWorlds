@@ -12,6 +12,9 @@ var Bullet2 = load("res://Projectiles/VSCodeBullet.tscn")
 export var running_speed = 10000
 export var jumping_speed = 600
 
+var current_impulse = Vector2(0,0)
+var jump_flag = true
+
 #Dash variables
 export var dash_speed = 12000
 export var dash_duration:float = 0.5
@@ -27,7 +30,7 @@ export var stomp_velocity = 600
 var stomp_flag = false
 
 #Wall Slide variables
-export var wall_slide_velocity = 800
+export var wall_slide_velocity = 3000
 export var wall_jump_velocity_y = 800
 export var wall_jump_velocity_x = 300
 
@@ -100,14 +103,12 @@ func calculate_wall_interaction(velocity, input_direction, delta):
 		out.y = wall_slide_velocity * delta
 		wall_jump_flag = false
 	
-	if Input.is_action_just_pressed("ui_jump") and not is_on_floor() and not wall_jump_flag:
+	if Input.is_action_just_pressed("ui_jump") and not is_on_floor() and not wall_jump_flag and jump_flag:
 		if wall_collisions_left > 0 and wall_collisions_right == 0:
-			out.y -= wall_jump_velocity_y
-			out.x += wall_jump_velocity_x
+			current_impulse = Vector2(wall_jump_velocity_x, -wall_jump_velocity_y)
 		
 		if wall_collisions_right > 0 and wall_collisions_left == 0:
-			out.y -= wall_jump_velocity_y
-			out.x -= wall_jump_velocity_x
+			current_impulse = Vector2(-wall_jump_velocity_x, -wall_jump_velocity_y)
 	
 	return out
 	
@@ -130,15 +131,22 @@ func calculate_velocity(velocity, delta):
 	
 	out = calculate_stomp(out, input_direction)
 	
-	if velocity.y < 0 and (Input.is_action_just_released("ui_jump") or is_on_ceiling()):
-		out.y = 0
+	if Input.is_action_just_released("ui_jump"):
+		if velocity.y < 0 or is_on_ceiling() and not jump_flag:
+			out.y = 0
+		jump_flag = true
 		
 	out.y += delta * gravity
 	
-	if is_on_floor() and Input.is_action_just_pressed("ui_jump"):
-		out.y = -jumping_speed
-	
 	out = calculate_wall_interaction(out, input_direction, delta)
+	
+	if Input.is_action_just_pressed("ui_jump"):
+		if is_on_floor():
+			current_impulse = Vector2(0, -jumping_speed)
+		jump_flag = false
+	
+	out += current_impulse
+	current_impulse = Vector2(0,0)
 	
 	return out
 
@@ -159,6 +167,7 @@ func shoot():
 		GUI.setVSAmmo(VSAmmo)
 	elif not changed_world and CursorAmmo > 0:
 		b_instance = Bullet1.instance()
+		b_instance.rotation = orientation.angle() 
 		CursorAmmo -= 1
 		GUI.setCursorAmmo(CursorAmmo)
 	else:

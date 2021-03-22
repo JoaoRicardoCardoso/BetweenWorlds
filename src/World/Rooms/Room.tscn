@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/Platforms/Platform1.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1922, 832 )
+
+[node name="Room" type="Node2D"]
+position = Vector2( -2, 0 )
+
+[node name="Platform1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 56 )
+
+[node name="Limits" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits"]
+shape = SubResource( 1 )
+
+[node name="Platform2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 586, 48 )
+
+[node name="Platform3" parent="." instance=ExtResource( 1 )]
+position = Vector2( -534, 56 )
+
+[node name="Platform4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1154, 48 )
+
+[node name="Platform5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1682, 48 )
+
+[node name="Platform6" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1078, 48 )
+
+[node name="Platform7" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1622, 56 )
+
+[node name="Platform8" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1918, 0 )
+rotation = 1.57254
+
+[node name="Platform9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1922, 1.50017 )
+rotation = -1.56905
+
+[node name="Platform10" parent="." instance=ExtResource( 1 )]
+position = Vector2( -6, 328 )
+
+[node name="Platform11" parent="." instance=ExtResource( 1 )]
+position = Vector2( -6, 568 )
+
+[node name="Platform12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 10, 832 )
+
+[node name="Platform13" parent="." instance=ExtResource( 1 )]
+position = Vector2( -6, -160 )
+
+[node name="Platform14" parent="." instance=ExtResource( 1 )]
+position = Vector2( -6, -368 )
+
+[node name="Platform15" parent="." instance=ExtResource( 1 )]
+position = Vector2( -6, -600 )
+
+[node name="Platform16" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -832 )
+rotation = -3.14159
