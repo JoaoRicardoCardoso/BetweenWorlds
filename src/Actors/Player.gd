@@ -104,7 +104,6 @@ func calculate_wall_interaction(velocity, input_direction, delta):
 		wall_jump_flag = false
 	
 	if Input.is_action_just_pressed("ui_jump") and not is_on_floor() and not wall_jump_flag and jump_flag:
-		print("JUMP")
 		if wall_collisions_left > 0 and wall_collisions_right == 0:
 			current_impulse = Vector2(wall_jump_velocity_x, -wall_jump_velocity_y)
 		
