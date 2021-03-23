@@ -18,7 +18,6 @@ func addPoints(value):
 func playerDied():
 	playerAlive = false
 	Global.lives -= 1
-	print(Global.lives)
 	
 func playerWon():
 	var player = AudioStreamPlayer.new()
@@ -47,6 +46,8 @@ func _process(delta):
 		timeAfterDeath = max(timeAfterDeath,0)
 		if timeAfterDeath == 0 and Global.lives > 0:
 			get_tree().change_scene("res://Game.tscn")
+		elif Global.lives <= 0:
+			get_tree().change_scene("res://Menu.tscn")
 		
 func _input(event):
 	if event.is_action_pressed("reset"):

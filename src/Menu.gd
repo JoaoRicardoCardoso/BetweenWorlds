@@ -38,6 +38,7 @@ func _input(event):
 #	pass
 
 func play():
+	Global.lives = 3
 	get_tree().change_scene_to(game_scene)
 	
 func exit():
