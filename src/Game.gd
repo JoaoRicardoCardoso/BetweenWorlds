@@ -6,6 +6,7 @@ var mins = 0
 var playerAlive = true
 var playerWon = false
 var outside = false
+var timeAfterDeath:float = 1.0
 
 func _ready():
 	$Music/Ambient.play()
@@ -16,8 +17,14 @@ func addPoints(value):
 	
 func playerDied():
 	playerAlive = false
+	Global.lives -= 1
+	print(Global.lives)
 	
 func playerWon():
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load("res://assets/sound/sfx/win.wav")
+	player.play()
 	playerWon = true
 	$Music/Ambient.stop()
 	
@@ -35,6 +42,11 @@ func _process(delta):
 	if $Music/Outside/Wind.volume_db == -20:
 		$Music/Outside/Wind.stop()
 		
+	if not playerAlive:
+		timeAfterDeath -= delta
+		timeAfterDeath = max(timeAfterDeath,0)
+		if timeAfterDeath == 0 and Global.lives > 0:
+			get_tree().change_scene("res://Game.tscn")
 		
 func _input(event):
 	if event.is_action_pressed("reset"):

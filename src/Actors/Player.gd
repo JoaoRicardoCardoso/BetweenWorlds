@@ -281,10 +281,16 @@ func setAnimation(velocity, input_direction):
 
 func _change_world(flag: bool):
 	if flag != changed_world:
-
 		get_tree().current_scene.get_node_or_null("Dimension1").change_state()
 		get_tree().current_scene.get_node_or_null("Dimension2").change_state()
 		#get_tree().current_scene.get_node_or_null("Rooms").setDimension(changed_world)
+		
+		#get_tree().current_scene.get_node_or_null("Music").get_node_or_null("Dime")
+		var player = AudioStreamPlayer.new()
+		self.add_child(player)
+		player.stream = load("res://assets/sound/sfx/boxopen.ogg")
+		player.volume_db = -20
+		player.play()
 
 		if changed_world:
 			collision_layer = 1
@@ -304,16 +310,36 @@ func _change_world(flag: bool):
 
 #########################################################
 func getCoffee():
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load("res://assets/sound/sfx/bottle.wav")
+	player.volume_db = -20
+	player.play()
 	coffee_counter = 200
 	GUI.activateCoffee()
 	
 func getStackoverflow():
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load("res://assets/sound/sfx/powerup.wav")
+	player.volume_db = -20
+	player.play()
 	stackoverflow_counter = 200
 	$Shield.visible = true
 
 func damage(value):
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	
 	if (stackoverflow_counter == 0):
 		health -= value
+		player.stream = load("res://assets/sound/sfx/hitplayer.wav")
+	else:
+		player.stream = load("res://assets/sound/sfx/hitplayer.wav")
+		
+	player.volume_db = -30
+	player.play()
+	
 	health = max(health, 0)
 	GUI.setHealthGauge(health)
 	if health <= 0:

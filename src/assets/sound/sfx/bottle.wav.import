@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bottle.wav-defde1b6f42275e67fa65e0545c3fd5d.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/bottle.wav"
+dest_files=[ "res://.import/bottle.wav-defde1b6f42275e67fa65e0545c3fd5d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -22,6 +22,11 @@ func _physics_process(delta):
 	current_velocity = move_and_slide(new_velocity, Vector2.UP) 
 
 func damage(value):
+	var player = AudioStreamPlayer2D.new()
+	self.add_child(player)
+	player.stream = load("res://assets/sound/sfx/hit.wav")
+	player.volume_db = -20
+	player.play()
 	health -= value
 	if health <= 0:
 		die()
