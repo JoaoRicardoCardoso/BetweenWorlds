@@ -334,10 +334,11 @@ func damage(value):
 	if (stackoverflow_counter == 0):
 		health -= value
 		player.stream = load("res://assets/sound/sfx/hitplayer.wav")
+		player.volume_db = -30
 	else:
-		player.stream = load("res://assets/sound/sfx/hitplayer.wav")
+		player.stream = load("res://assets/sound/sfx/shield.wav")
+		player.volume_db = -10
 		
-	player.volume_db = -30
 	player.play()
 	
 	health = max(health, 0)

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shield.wav-35c8aaf1db543fbe144bda0c9cdf71d0.sample"
+
+[deps]
+
+source_file="res://assets/sound/sfx/shield.wav"
+dest_files=[ "res://.import/shield.wav-35c8aaf1db543fbe144bda0c9cdf71d0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

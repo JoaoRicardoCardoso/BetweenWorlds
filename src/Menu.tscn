@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://World/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Tiles/main_lev_build.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Menu.gd" type="Script" id=8]
 [ext_resource path="res://assets/Menu/Title.png" type="Texture" id=9]
 [ext_resource path="res://assets/WorldElements/Scroll.png" type="Texture" id=10]
+[ext_resource path="res://assets/sound/old city theme.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/sfx/menu_click.wav" type="AudioStream" id=12]
 
 [sub_resource type="TileSet" id=1]
 1/name = "main_lev_build.png 1"
@@ -390,6 +392,12 @@ __meta__ = {
 [node name="Title" type="Sprite" parent="."]
 position = Vector2( 503.8, 200 )
 texture = ExtResource( 9 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 [connection signal="mouse_entered" from="PlayButton" to="." method="_on_PlayButton_mouse_entered"]
 [connection signal="mouse_exited" from="PlayButton" to="." method="_on_PlayButton_mouse_exited"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]

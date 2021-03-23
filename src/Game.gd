@@ -48,6 +48,15 @@ func _process(delta):
 			get_tree().change_scene("res://Game.tscn")
 		elif Global.lives <= 0:
 			get_tree().change_scene("res://Menu.tscn")
+	
+	if playerWon:
+		var t = Timer.new()
+		t.set_wait_time(2)
+		t.set_one_shot(true)
+		self.add_child(t)
+		t.start()
+		yield(t, "timeout")
+		get_tree().change_scene("res://Menu.tscn")
 		
 func _input(event):
 	if event.is_action_pressed("reset"):

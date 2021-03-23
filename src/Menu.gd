@@ -11,22 +11,26 @@ var selected = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Music.play();
 
 func _input(event):
 	if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
 		if selected == null and event.is_action_pressed("ui_down"):
 			$PlayButton.grab_focus()
 			selected = "play"
+			$Click.play()
 		elif selected == null and event.is_action_pressed("ui_up"):
 			$ExitButton.grab_focus()
 			selected = "exit"
+			$Click.play()
 		elif selected == "play":
 			$ExitButton.grab_focus()
 			selected = "exit"
+			$Click.play()
 		elif selected == "exit":
 			$PlayButton.grab_focus()
 			selected = "play"
+			$Click.play()
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_shoot"):
 		if selected == "play":
 			play()
