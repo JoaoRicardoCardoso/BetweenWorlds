@@ -59,8 +59,8 @@ func _process(delta):
 		get_tree().change_scene("res://Menu.tscn")
 		
 func _input(event):
-	if event.is_action_pressed("reset"):
-		get_tree().change_scene("res://Game.tscn")
+	if event.is_action_pressed("ui_escape"):
+		get_tree().change_scene("res://Menu.tscn")
 
 
 func _on_Outside_body_entered(body):
