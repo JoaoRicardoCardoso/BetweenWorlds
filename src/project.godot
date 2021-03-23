@@ -69,8 +69,8 @@ _global_script_class_icons={
 [application]
 
 config/name="WIP"
-run/main_scene="res://Game.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Menu.tscn"
+config/icon="res://assets/WorldElements/Scroll.png"
 
 [display]
 
@@ -126,4 +126,3 @@ reset={
 
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
-environment/default_environment="res://default_env.tres"
