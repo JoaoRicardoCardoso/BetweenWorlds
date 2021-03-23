@@ -57,10 +57,12 @@ func _on_ExitButton_pressed():
 func _on_PlayButton_mouse_entered():
 	$PlayButton.grab_focus()
 	selected = "play"
+	$Click.play()
 
 func _on_ExitButton_mouse_entered():
 	$ExitButton.grab_focus()
 	selected = "exit"
+	$Click.play()
 
 func _on_PlayButton_mouse_exited():
 	if selected == "play":
