@@ -71,6 +71,7 @@ _global_script_class_icons={
 config/name="WIP"
 run/main_scene="res://Menu.tscn"
 config/icon="res://assets/WorldElements/Scroll.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
